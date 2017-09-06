@@ -65,17 +65,16 @@ $regexp = "/http\:\/\/extranet\.ffta\.fr\/tmp\/resultats\/.*?\.csv/m";
 preg_match($regexp, $response, $m );
 $file_url = $m[0]; 
 
-$csv_content = file_get_contents($file_url);
+echo "File CSV generated ";
 
 ##############################
-#  FILL DB
+#  CREATE DB
 ##############################
-$dbname='./base.db';
+$dbname=dirname(__FILE__)."/base.sqlite";
 if(!class_exists('SQLite3'))
   die("SQLite 3 NOT supported.");
 
-$base=new SQLite3($dbname, 0666);
-echo "SQLite 3 supported.\n"; 
+$base=new SQLite3($dbname);
 
 $mytable = "RESULTS";
 
@@ -128,6 +127,36 @@ $query = "CREATE TABLE $mytable(
     )";
     
 $base->exec($query);
+
+echo "Database created";
+
+##############################
+#  FILL DB
+##############################
+
+$file = fopen ($file_url, "r");
+
+while (!feof ($file)) {
+    $line = fgets ($file);
+	
+	$values = explode(";", $line);
+    
+	$query = "INSERT INTO $mytable VALUES( ";
+	foreach( $values as $val ){
+		$query .= '"';
+		$val_ok = str_replace("\"", "", $val);
+		$query .= $val_ok;
+		$query .= '"';
+		$query .= ',';
+	}
+	$query = rtrim($query, ',');
+	$query .= " )";
+	$base->exec($query);
+	
+	echo "Data Added : ".$query;
+	
+}
+fclose($file);
 
 
 ##############################
