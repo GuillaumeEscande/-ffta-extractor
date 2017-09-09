@@ -5,6 +5,13 @@
 #  LOGIN
 ##############################
 
+
+echo "<html><head>Fill Score DB<head>";
+
+
+echo "<br/>";
+echo "LOGIN";
+
 // initialisation de la session
 $login = curl_init();
 
@@ -29,9 +36,15 @@ curl_exec($login);
 curl_close($login);
 
 
+echo " - OK";
+echo "<br/>";
+
 ##############################
 #  GENERATE DOCUMENT
 ##############################
+
+echo "<br/>";
+echo "GENERATE DOCUMENT";
 
 // initialisation de la session
 $generateDocument = curl_init();
@@ -56,32 +69,41 @@ $response = curl_exec($generateDocument);
 // fermeture des ressources
 curl_close($generateDocument);
 
+echo " - OK";
+echo "<br/>";
 
 
 ##############################
 #  GET DOCUMENT
 ##############################
+
+echo "<br/>";
+echo "GET DOCUMENT";
+
 $regexp = "/http\:\/\/extranet\.ffta\.fr\/tmp\/resultats\/.*?\.csv/m";
 preg_match($regexp, $response, $m );
 $file_url = $m[0]; 
 
-echo "File CSV generated ";
+echo " - OK : $file_url";
+echo "<br/>";
 
 ##############################
 #  CREATE DB
 ##############################
+
+echo "<br/>";
+echo "CREATE DB";
+
 $dbname=dirname(__FILE__)."/base.sqlite";
 if(!class_exists('SQLite3'))
   die("SQLite 3 NOT supported.");
 
-$base=new SQLite3($dbname);
+$base=new SQLite3($dbname) or die("Unable to open database");
 
-$mytable = "RESULTS";
+$query = "DROP TABLE IF EXISTS RESULTS";
+$base->exec($query) or die("Error to DROP RESULTS");
 
-$query = "DROP TABLE IF EXISTS $mytable";
-$base->exec($query);
-
-$query = "CREATE TABLE $mytable(
+$query = "CREATE TABLE RESULTS(
     SAISON int NOT NULL,
     DISCIPLINE text NOT NULL,
     NO_LICENCE text NOT NULL,
@@ -126,14 +148,62 @@ $query = "CREATE TABLE $mytable(
     NUM_DEPART int NOT NULL
     )";
     
-$base->exec($query);
+$base->exec($query) or die("Error to CREATE RESULTS");
 
-echo "Database created";
+echo " - OK";
+echo "<br/>";
 
 ##############################
 #  FILL DB
 ##############################
 
+/*echo "<br/>";
+echo "FILL DB";
+
+$file = fopen ($file_url, "r");
+
+//Préparation du statement pour accelerer l'INSERT
+$nbAttribute = 42;
+$datas = array();
+$stmt = $base->prepare("INSERT INTO RESULTS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+// Initialisation du bond de données de l'INSERT
+for ($i = 1; $i <= $nbAttribute; $i++) {
+    $datas[$i] = "";
+    $stmt->bindParam($i, $datas[$i]);
+}
+
+// Lecture du fichier
+while (!feof ($file)) {
+    $line = fgets ($file);
+	
+    // Séparation des valeurs
+	$values = explode(";", $line);
+    
+    // Préparation de la requete
+    $cpt = 1;
+	foreach( $values as $val ){
+        $datas[$cpt] = $val;
+        $stmt->bindParam($cpt, $datas[$cpt]);
+        $cpt++;
+	}
+    // Insert de la donnée
+    $stmt->execute() or die("Error to INSERT DATA");
+	
+	
+}
+fclose($file);
+
+echo " - OK";
+echo "<br/>";*/
+
+
+
+echo "<br/>";
+echo "FILL DB";
+
+echo "<br/>";
+echo "<li>";
 $file = fopen ($file_url, "r");
 
 while (!feof ($file)) {
@@ -141,10 +211,10 @@ while (!feof ($file)) {
 	
 	$values = explode(";", $line);
     
-	$query = "INSERT INTO $mytable VALUES( ";
+	$query = "INSERT INTO RESULTS VALUES( ";
 	foreach( $values as $val ){
 		$query .= '"';
-		$val_ok = str_replace("\"", "", $val);
+		$val_ok = iconv('UTF-8','ASCII//TRANSLIT', str_replace("\"", "", $val));
 		$query .= $val_ok;
 		$query .= '"';
 		$query .= ',';
@@ -153,15 +223,24 @@ while (!feof ($file)) {
 	$query .= " )";
 	$base->exec($query);
 	
-	echo "Data Added : ".$query;
+	echo "<ul>Data Added : ".$query."</ul>";
 	
 }
 fclose($file);
+
+echo "</li>";
+
+echo "<br/>";
+echo " - OK";
+echo "<br/>";
 
 
 ##############################
 #  LOGOUT
 ##############################
+
+echo "<br/>";
+echo "LOGOUT";
 
 // initialisation de la session
 $logout = curl_init();
@@ -182,5 +261,12 @@ curl_exec($logout);
 
 // fermeture des ressources
 curl_close($logout);
+
+echo " - OK";
+echo "<br/>";
+
+
+echo "End of script";
+echo "</html>";
 
 ?>
