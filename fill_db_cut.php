@@ -44,6 +44,7 @@ $query = "INSERT INTO CUTS
                 AND SEXE_PERSONNE='H' 
                 AND CAT='S' 
                 AND ARME='CL' 
+                AND NUM_DEPART='1' 
             ORDER BY SCORE DESC limit 2 )";
 
 
