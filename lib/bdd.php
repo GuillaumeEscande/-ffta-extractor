@@ -83,6 +83,76 @@ class BDD
 
     }
 
+    public function getTableCutName($cut_name){
+        return "CUT_".$cut_name;
+    }
+
+    public function createTableCut($cut_name){
+
+        $table_name = $this->getTableCutName($cut_name);
+
+        $this->_pdo->query("DROP TABLE IF EXISTS $table_name") or die("Error to DROP $table_name");
+
+        $query = "CREATE TABLE $table_name(
+            RANK int DEFAULT 0,
+            NO_LICENCE text NOT NULL PRIMARY KEY,
+            NOM_PERSONNE text NOT NULL,
+            PRENOM_PERSONNE text NOT NULL,  
+            SCORE_TOTAL int NOT NULL,
+            ETAT int DEFAULT 0
+        )";
+
+        $this->_pdo->query($query) or die("Error to CREATE $table_name");
+    
+    }
+
+    public function generateTableCut(){
+        $query = "INSERT INTO CUTS
+        SELECT NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE, SEXE_PERSONNE, CAT, ARME, NIVEAU, SCORE FROM RESULTS A
+            WHERE SCORE IN 
+                ( SELECT SCORE 
+                    FROM RESULTS B 
+                    WHERE A.NO_LICENCE = B.NO_LICENCE
+                        AND DISCIPLINE='S' 
+                        AND SEXE_PERSONNE='H' 
+                        AND CAT='S' 
+                        AND ARME='CL' 
+                        AND NUM_DEPART='1' 
+                    ORDER BY SCORE DESC limit 2 )";
+
+
+
+        $results = $base->query($query) or die('Error to generate CUT');
+    }
+
+    public function createAndCondArray($paramValue, $columnName){
+        $array_data = array();
+        if ( is_array( $paramValue) )
+            $array_data = array_merge($array_data, $paramValue);
+        else
+            array_push($array_data, $paramValue);
+
+        $query = " AND (";
+        if( in_array("*", $array_data) ){
+            return "";
+        } else {
+            $first = true;
+            foreach( $array_data as $data ){
+                if ( ! $first ){
+                    $query .= " OR";
+                } else {
+                    $first = false;
+                }
+                
+                $query .= " ".$columnName."='".$data."' ";
+                
+            }
+        }
+        $query .= " ) ";
+
+        return $query;
+    }
+
 }
 
 ?>

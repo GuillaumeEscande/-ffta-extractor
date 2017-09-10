@@ -16,7 +16,13 @@
     },
     "cuts":[
         {
-            "name":"cd31_scratch_salle_homme"
+            "name":"cd31_cl_scratch_salle_homme",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
         }
 
     ]

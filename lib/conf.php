@@ -16,7 +16,7 @@ class Configuration
         $this->_config = json_decode($jsonStr, true);
 
         foreach ($this->_config["cuts"] as $cut){
-            $_cuts_names.append( $cut["name"] );
+            array_push( $this->_cuts_names, $cut["name"] );
             $this->_cuts[ $cut["name"] ] = $cut;
         }
 
@@ -31,11 +31,11 @@ class Configuration
     }
     
     public function get_configuration_cut_names( ){
-        return $this->$_cuts_names;
+        return $this->_cuts_names;
     }
 
     public function get_configuration_cut( $profile, $data ){
-        return $this->$_cuts[ $profile ][$data];
+        return $this->_cuts[ $profile ][$data];
     }
 }
 
