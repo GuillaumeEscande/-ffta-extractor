@@ -8,7 +8,7 @@ echo "<html><head>Generate TABLE CUT<head>";
 #  OPEN DB
 ##############################
 
-echo "<br/>";
+echo "<br/>\n";
 echo "OPEN DB";
 
 $dbname=dirname(__FILE__)."/base.sqlite";

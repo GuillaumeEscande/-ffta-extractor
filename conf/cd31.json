@@ -1,0 +1,25 @@
+{
+    "ffta": {
+        "login": "463693",
+        "password": "NEgyMTZ6ZmQ=",
+
+        "saison" : "2017",
+        "date_debut": "01/01/2016",
+        "date_fin": "31/08/2018",
+        "type_structure": "DEP",
+        "code_structure": "31000"
+    },
+    "bdd": {
+        "url": "sqlite:./data/base.sqlite",
+        "login": "",
+        "password": ""
+    },
+    "cuts":[
+        {
+            "name":"cd31_scratch_salle_homme"
+        }
+
+    ]
+
+
+}
