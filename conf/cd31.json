@@ -10,17 +10,80 @@
         "code_structure": "31000"
     },
     "bdd": {
-        "url": "sqlite:./data/base.sqlite",
+        "url": "sqlite:/home/gescande/public_html/ffta-extractor/data/base.sqlite",
         "login": "",
         "password": ""
     },
     "cuts":[
         {
-            "name":"cd31_cl_scratch_salle_homme",
+            "name":"CD31 CL Scratch Homme Salle",
             "discipline" : "S",
             "sexe" : "H",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CD31 CL Scratch Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CD31 CO Scratch Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CD31 CO Scratch Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CD31 CL Scratch Homme FITA",
+            "discipline" : "F",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CD31 CL Scratch Femme FITA",
+            "discipline" : "F",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CD31 CO Scratch Homme FITA",
+            "discipline" : "F",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CD31 CO Scratch Femme FITA",
+            "discipline" : "F",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
             "nb_score" : "2",
             "taille" : "16"
         }

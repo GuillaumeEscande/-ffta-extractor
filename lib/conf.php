@@ -1,4 +1,4 @@
-<?php namespace php_ranking;
+<?php namespace ffta_extractor;
 
 class Configuration
 {

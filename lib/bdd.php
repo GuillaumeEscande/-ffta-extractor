@@ -1,4 +1,4 @@
-<?php namespace php_ranking;
+<?php namespace ffta_extractor;
 
 use \PDO;
 
@@ -27,11 +27,11 @@ class BDD
         }
     }
 
-    public function getPDO(){
+    public function get_PDO(){
         return $this->_pdo;
     }
 
-    public function createTableResults(){
+    public function create_table_results(){
 
         $this->_pdo->query("DROP TABLE IF EXISTS RESULTS") or die("Error to DROP RESULTS");
         
@@ -83,13 +83,13 @@ class BDD
 
     }
 
-    public function getTableCutName($cut_name){
-        return "CUT_".$cut_name;
+    public function get_table_cut_name($cut_name){
+        return str_replace(' ', '_', "CUT_".$cut_name);
     }
 
-    public function createTableCut($cut_name){
+    public function create_table_cut($cut_name){
 
-        $table_name = $this->getTableCutName($cut_name);
+        $table_name = $this->get_table_cut_name($cut_name);
 
         $this->_pdo->query("DROP TABLE IF EXISTS $table_name") or die("Error to DROP $table_name");
 
@@ -106,7 +106,7 @@ class BDD
     
     }
 
-    public function generateTableCut(){
+    public function generate_table_cut(){
         $query = "INSERT INTO CUTS
         SELECT NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE, SEXE_PERSONNE, CAT, ARME, NIVEAU, SCORE FROM RESULTS A
             WHERE SCORE IN 
@@ -120,12 +120,10 @@ class BDD
                         AND NUM_DEPART='1' 
                     ORDER BY SCORE DESC limit 2 )";
 
-
-
         $results = $base->query($query) or die('Error to generate CUT');
     }
 
-    public function createAndCondArray($paramValue, $columnName){
+    public function create_and_cond_array($paramValue, $columnName){
         $array_data = array();
         if ( is_array( $paramValue) )
             $array_data = array_merge($array_data, $paramValue);

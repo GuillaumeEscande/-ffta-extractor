@@ -1,17 +1,17 @@
-<?php namespace php_ranking;
+<?php namespace ffta_extractor;
 
-class Request
+abstract class Request
 {
 
-    private $_configuration;
-    private $_cookie;
+    protected $_configuration;
+    protected $_cookie;
     public function __construct( $configuration )
     {
         $this->_configuration = $configuration;
         $this->_cookie = dirname(__FILE__).'/../data/cookie.txt';
     }
 
-    private function curl( $url , $data){
+    protected function curl( $url , $data){
         // initialisation de la session
         $curl = curl_init();
 
@@ -38,6 +38,15 @@ class Request
         return $response;
     }
 
+    abstract public function login();
+    
+    abstract public function logout();
+
+}
+
+class RequestExtranet extends Request
+{
+
     public function login(){
 
         $data = array(
@@ -52,7 +61,7 @@ class Request
         $this->curl("http://extranet.ffta.fr/deconnexion.html", $data);
     }
 
-    public function getDocumentUrl(){
+    public function get_document_url(){
 
 
         $data = array(
@@ -75,6 +84,8 @@ class Request
 
         return $file_url;
     }
-}
+}   
+
+
 
 ?>

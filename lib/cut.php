@@ -1,4 +1,4 @@
-<?php namespace php_ranking;
+<?php namespace ffta_extractor;
 
 class CUT
 {
@@ -20,7 +20,7 @@ class CUT
         }
         $query_prepare .= ")";
         
-        $stmt = $this->_bdd->getPDO()->prepare($query_prepare);
+        $stmt = $this->_bdd->get_PDO()->prepare($query_prepare);
         
         $file = fopen ($csvUrl, "r");
         
@@ -46,11 +46,11 @@ class CUT
 
     private function fill_cut( $cut_name ){
         
-        $this->_bdd->createTableCut($cut_name);
+        $this->_bdd->create_table_cut($cut_name);
 
-        $pdo = $this->_bdd->getPDO();
+        $pdo = $this->_bdd->get_PDO();
         $nb_score = $this->_configuration->get_configuration_cut($cut_name, "nb_score");
-        $table_name = $this->_bdd->getTableCutName($cut_name);
+        $table_name = $this->_bdd->get_table_cut_name($cut_name);
 
         //----------------------------
         // STEP 1 : Création sous selection
@@ -59,19 +59,19 @@ class CUT
         
         // Discipline
         $discipline = $this->_configuration->get_configuration_cut($cut_name, "discipline");
-        $querySubSelect .= $this->_bdd->createAndCondArray($discipline, "DISCIPLINE");
+        $querySubSelect .= $this->_bdd->create_and_cond_array($discipline, "DISCIPLINE");
 
         // Sexe
         $sexe = $this->_configuration->get_configuration_cut($cut_name, "sexe");
-        $querySubSelect .= $this->_bdd->createAndCondArray($sexe, "SEXE_PERSONNE");
+        $querySubSelect .= $this->_bdd->create_and_cond_array($sexe, "SEXE_PERSONNE");
         
         // Categorie
         $categorie = $this->_configuration->get_configuration_cut($cut_name, "categorie");
-        $querySubSelect .= $this->_bdd->createAndCondArray($categorie, "CAT");
+        $querySubSelect .= $this->_bdd->create_and_cond_array($categorie, "CAT");
         
         // Arme
         $arme = $this->_configuration->get_configuration_cut($cut_name, "arme");
-        $querySubSelect .= $this->_bdd->createAndCondArray($arme, "ARME");
+        $querySubSelect .= $this->_bdd->create_and_cond_array($arme, "ARME");
         
 
         //----------------------------
@@ -121,7 +121,6 @@ class CUT
             }
         } 
 
-        // TODO Gerer égalité
     }
 
     public function fill_all_cuts( ){
@@ -131,9 +130,9 @@ class CUT
     }
 
     public function print_cut( $cut_name ){
-        $pdo = $this->_bdd->getPDO();
+        $pdo = $this->_bdd->get_PDO();
 
-        $table_name = $this->_bdd->getTableCutName($cut_name);
+        $table_name = $this->_bdd->get_table_cut_name($cut_name);
         $stmt = $pdo->prepare("SELECT * FROM $table_name ORDER BY SCORE_TOTAL DESC");
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -156,6 +155,7 @@ class CUT
             echo "</tr>\n";
         }
         echo("</table>\n");
+
         
     }
 }
