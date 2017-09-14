@@ -149,16 +149,11 @@ class CUT
         //----------------------------
         // STEP 5 : Gestion égalité
         //----------------------------
-<<<<<<< HEAD
-        $query_egalite = "SELECT NO_LICENCE AS P1, RANK AS R1, X.NO_LICENCE AS P2, X.RANK AS R1, SCORE_TOTAL  FROM (SELECT * FROM $table_name ORDER BY RANK) AS X WHERE SCORE_TOTAL= X.SCORE_TOTAL AND NO_LICENCE!=X.NO_LICENCE ORDER BY RANK";
-=======
         $query_egalite = "SELECT NO_LICENCE AS P1, X.NO_LICENCE AS P2, SCORE_TOTAL  FROM (SELECT * FROM $table_name) AS X WHERE SCORE_TOTAL= X.SCORE_TOTAL AND NO_LICENCE!=X.NO_LICENCE";
->>>>>>> a5853f585ff9702a0b17050d1c9c5550993dc155
 
         $sth_egalite = $pdo->prepare($query_egalite);
         $sth_egalite->execute();
         
-<<<<<<< HEAD
         $sth_get_scores = $pdo->prepare("SELECT SCORE FROM RESULTS WHERE  ".$querySubSelect." AND NO_LICENCE=:NO_LICENCE ORDER BY SCORE DESC");
 
         $result = $sth_egalite->fetchAll();
@@ -189,14 +184,13 @@ class CUT
                     //Ranking OK
                 }
             }
+	}
 
 
 
-=======
         $result = $sth_egalite->fetchAll();
         foreach ($result as $archer){
             print ("EGALITE : ". $archer["NO_LICENCE"]." - ". $archer["NO_LICENCE"]." = ". $archer["SCORE_TOTAL"]."</br>");
->>>>>>> a5853f585ff9702a0b17050d1c9c5550993dc155
         }
 
     }
