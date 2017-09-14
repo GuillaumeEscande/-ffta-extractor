@@ -107,6 +107,7 @@ class CUT
                     $score_total += $result[$i]["SCORE"];
                 }
             }
+            $score_total = ceil( $score_total / $nb_score);
 
             // Insert
             $sth_insert->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
@@ -121,6 +122,43 @@ class CUT
             }
         } 
 
+        //----------------------------
+        // STEP 4 : Calcul Rank
+        //----------------------------
+        $query_order_by_score = "SELECT NO_LICENCE
+        FROM $table_name  
+        ORDER BY SCORE_TOTAL DESC";
+
+        $sth_order_by_score = $pdo->prepare($query_order_by_score);
+        $sth_order_by_score->execute();
+        
+        $result = $sth_order_by_score->fetchAll();
+
+        $sth_update_rank = $pdo->prepare("UPDATE $table_name SET RANK=:RANK WHERE NO_LICENCE=:NO_LICENCE");
+        
+        $cpt = 1;
+        foreach ($result as $archer){
+
+            $sth_update_rank->bindValue(":RANK", $cpt);
+            $sth_update_rank->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
+            $sth_update_rank->execute();
+
+            $cpt ++;
+        }
+        
+        //----------------------------
+        // STEP 5 : Gestion égalité
+        //----------------------------
+        $query_egalite = "SELECT NO_LICENCE AS P1, X.NO_LICENCE AS P2, SCORE_TOTAL  FROM (SELECT * FROM $table_name) AS X WHERE SCORE_TOTAL= X.SCORE_TOTAL AND NO_LICENCE!=X.NO_LICENCE";
+
+        $sth_egalite = $pdo->prepare($query_egalite);
+        $sth_egalite->execute();
+        
+        $result = $sth_egalite->fetchAll();
+        foreach ($result as $archer){
+            print ("EGALITE : ". $archer["NO_LICENCE"]." - ". $archer["NO_LICENCE"]." = ". $archer["SCORE_TOTAL"]."</br>");
+        }
+
     }
 
     public function fill_all_cuts( ){
@@ -129,11 +167,31 @@ class CUT
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function print_cut( $cut_name ){
         $pdo = $this->_bdd->get_PDO();
 
         $table_name = $this->_bdd->get_table_cut_name($cut_name);
-        $stmt = $pdo->prepare("SELECT * FROM $table_name ORDER BY SCORE_TOTAL DESC");
+        $stmt = $pdo->prepare("SELECT * FROM $table_name ORDER BY RANK ASC");
         $stmt->execute();
         $result = $stmt->fetchAll();
         echo("<table border=1 >\n");
@@ -142,15 +200,15 @@ class CUT
             if ($first_row) {
                 $first_row = false;
                 // Output header row from keys.
-                echo '<tr>';
+                echo "<tr>";
                 foreach($row as $key => $field) {
-                    echo '<th>' . htmlspecialchars($key) . '</th>';
+                    echo "<th>" . htmlspecialchars($key) . "</th>";
                 }
-                echo '</tr>\n';
+                echo "</tr>\n";
             }
-            echo '<tr>';
+            echo "<tr>";
             foreach($row as $key => $field) {
-                echo '<td>' . htmlspecialchars($field) . '</td>';
+                echo "<td>" . htmlspecialchars($field) . "</td>";
             }
             echo "</tr>\n";
         }
