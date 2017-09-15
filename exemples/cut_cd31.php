@@ -12,7 +12,8 @@ $cutManager = new ffta_extractor\Cut_manager("cd31.json");
 
 ?>
 
-    <a href="./cut_cd31.php?generate=true">Generer les données</a><br/>
+    <a href="./cut_cd31.php?generate=all">Generer les données</a><br/>
+    <a href="./cut_cd31.php?generate=cut">Generer les cuts</a><br/>
     <br/>
 
 
@@ -33,7 +34,12 @@ foreach( $cutManager->get_cut_name_list() as $cutname ){
 <?php
 
 if( isset($_GET['generate']) ){
-    $cutManager->generate_datas();
+    if( $_GET['generate'] == "all"){
+        $cutManager->generate_datas();
+    }
+    if( $_GET['generate'] == "cut"){
+        $cutManager->generate_cuts();
+    }
 }
 
 

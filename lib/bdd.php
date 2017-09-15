@@ -15,8 +15,10 @@ class BDD
           die("SQLite 3 NOT supported.");
         
         try{
+
+            $LIB_HOME = dirname(__FILE__).'/..';
             $this->_pdo = new PDO(
-                $this->_configuration->get_configuration_bdd("url"),
+                str_replace('$LIB_HOME', $LIB_HOME, $this->_configuration->get_configuration_bdd("url")),
                 $this->_configuration->get_configuration_bdd("login"),
                 $this->_configuration->get_configuration_bdd("password") );
                 $this->_pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

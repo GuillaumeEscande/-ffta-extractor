@@ -35,6 +35,11 @@ class Cut_manager
         $this->_cut->fill_all_cuts( );
     }
     
+    public function generate_cuts( ){
+        $this->_cut->fill_all_cuts( );
+    }
+    
+    
     public function print_cut ($cutName){
         $this->_cut->print_cut( $cutName );
     }

@@ -31,7 +31,7 @@ class CUT
             
             $cpt = 1;
             foreach( $values as $val ){ 
-                $stmt->bindValue($cpt, iconv('ISO-8859-1//TRANSLIT','ASCII//TRANSLIT', str_replace("\"", "", $val)));
+                $stmt->bindValue($cpt, iconv('ISO-8859-1','ASCII', str_replace("\"", "", $val)));
                 $cpt++;
             }
         
@@ -42,6 +42,40 @@ class CUT
             }
         }
         fclose($file);
+    }
+
+    // fonction de comparaison utilisé pour les égalité
+    private static function cmp($a, $b) {
+
+        $scoresa = array();
+        foreach($a["SCORES"] as $score_row)
+            $scoresa[] = intval($score_row['SCORE']);
+        $scoresb = array();
+        foreach($b["SCORES"] as $score_row)
+            $scoresb[] = intval($score_row['SCORE']);
+
+        while(count($scoresa) > 0 && count($scoresb) > 0){
+            $scorexa = array_shift($scoresa);
+            $scorexb = array_shift($scoresb);
+            if( $scorexa > $scorexb ){
+                return 0;
+            }
+            if( $scorexa < $scorexb ){
+                return 1;
+            }
+        }
+
+        if (count($scoresa) == 0 && count($scoresb) == 0) {
+            return (strcmp($a["NO_LICENCE"],$b["NO_LICENCE"]) > 0);
+        }
+
+        if( count($scoresa) == 0 ){
+            return 1;
+        }
+        if( count($scoresb) == 0 ){
+            return 0;
+        }
+        throw new \Exception("Echec du trie du tableau d'egalite");
     }
 
     private function fill_cut( $cut_name ){
@@ -107,7 +141,7 @@ class CUT
                     $score_total += $result[$i]["SCORE"];
                 }
             }
-            $score_total = ceil( $score_total / $nb_score);
+            $score_total /= $nb_score;
 
             // Insert
             $sth_insert->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
@@ -149,50 +183,59 @@ class CUT
         //----------------------------
         // STEP 5 : Gestion égalité
         //----------------------------
-        $query_egalite = "SELECT NO_LICENCE AS P1, X.NO_LICENCE AS P2, SCORE_TOTAL  FROM (SELECT * FROM $table_name) AS X WHERE SCORE_TOTAL= X.SCORE_TOTAL AND NO_LICENCE!=X.NO_LICENCE";
+        $query_egalite = "SELECT T1.SCORE_TOTAL as SCORE  FROM $table_name AS T1, (SELECT * FROM $table_name) AS T2 WHERE T1.SCORE_TOTAL= T2.SCORE_TOTAL AND T1.NO_LICENCE!=T2.NO_LICENCE GROUP BY SCORE ORDER BY SCORE DESC";
 
         $sth_egalite = $pdo->prepare($query_egalite);
         $sth_egalite->execute();
         
-        $sth_get_scores = $pdo->prepare("SELECT SCORE FROM RESULTS WHERE  ".$querySubSelect." AND NO_LICENCE=:NO_LICENCE ORDER BY SCORE DESC");
+        $sth_get_archer_egalite = $pdo->prepare("SELECT NO_LICENCE, RANK FROM $table_name WHERE  SCORE_TOTAL=:SCORE_TOTAL ORDER BY RANK ASC");
 
-        $result = $sth_egalite->fetchAll();
-        foreach ($result as $archer){
-            print ("EGALITE : ". $archer["P1"]." - ". $archer["P2"]." = ". $archer["SCORE_TOTAL"]."</br>");
+        $result_scores = $sth_egalite->fetchAll();
+        foreach ($result_scores as $score){
 
-            // Récupération de l'ensemble des score de l'archer 1 :
-            $sth_update_rank->bindValue(":NO_LICENCE", $archer["P1"]);
-            $result_score_archer1 = $sth_update_rank->execute();
+            // Récupération des archer en égalité
+            $sth_get_archer_egalite->bindValue(":SCORE_TOTAL", $score["SCORE"]);
+            $sth_get_archer_egalite->execute();
 
-            // Récupération de l'ensemble des score de l'archer 2 :
-            $sth_update_rank->bindValue(":NO_LICENCE", $archer["P2"]);
-            $result_score_archer2 = $sth_update_rank->execute();
+            $sth_get_scores = $pdo->prepare("SELECT SCORE FROM RESULTS WHERE  ".$querySubSelect." AND NO_LICENCE=:NO_LICENCE ORDER BY SCORE DESC");
 
-            $nb_score_max = min( count($result_score_archer1), count($result_score_archer2) );
 
-            $min_rank =  min( $archer["R1"], $archer["R2"] );
+            $data_trie = array();
 
-            //TODO refaire au ca ou égalité de plusieurs personnes
+            // Pour chaque archer en égalité
+            $result_archer_score = $sth_get_archer_egalite->fetchAll();
 
-            if( $nb_score_max < $nb_score)
-                break;
+            foreach ($result_archer_score as $archer){
+                
+                // Récupération de l'ensemble des score de l'archer :
+                $sth_get_scores->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
+                $sth_get_scores->execute();
 
-            for ($i = $nb_score; $i <= $nb_score_max; $i++) {
-                $score_archer_1 = $result_score_archer1[$i]["SCORE"];
-                $score_archer_2 = $result_score_archer2[$i]["SCORE"];
-                if( $score_archer_1 > $score_archer_2 ){
-                    //Ranking OK
-                }
+                $result_score_archer = $sth_get_scores->fetchAll();
+
+                $data_trie[] = array( "NO_LICENCE"=>$archer["NO_LICENCE"],
+                    "SCORES"=>array_slice($result_score_archer, $nb_score) );
+
             }
-	}
+            // Trie des archer
+            uasort($data_trie, 'ffta_extractor\CUT::cmp');
 
+            // Récuperation du plus petit rank
+            $rank_min = $result_archer_score[0]["RANK"];
 
+            // Mise a jour des ranks
+            $sth_update_rank = $pdo->prepare("UPDATE $table_name SET RANK=:RANK WHERE NO_LICENCE=:NO_LICENCE");
 
-        $result = $sth_egalite->fetchAll();
-        foreach ($result as $archer){
-            print ("EGALITE : ". $archer["NO_LICENCE"]." - ". $archer["NO_LICENCE"]." = ". $archer["SCORE_TOTAL"]."</br>");
+            foreach ($data_trie as $archer){
+
+                $sth_update_rank->bindValue(":RANK", $rank_min);
+                $sth_update_rank->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
+                $sth_update_rank->execute();
+
+                $rank_min++;
+            }
+
         }
-
     }
 
     public function fill_all_cuts( ){

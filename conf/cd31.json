@@ -4,13 +4,13 @@
         "password": "NEgyMTZ6ZmQ=",
 
         "saison" : "2017",
-        "date_debut": "01/01/2016",
-        "date_fin": "31/08/2018",
+        "date_debut": "01/08/2016",
+        "date_fin": "31/09/2017",
         "type_structure": "DEP",
         "code_structure": "31000"
     },
     "bdd": {
-        "url": "sqlite:/home/gescande/public_html/ffta-extractor/data/base.sqlite",
+        "url": "sqlite:$LIB_HOME/data/base.sqlite",
         "login": "",
         "password": ""
     },
