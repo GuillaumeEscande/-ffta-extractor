@@ -1,0 +1,94 @@
+{
+    "ffta": {
+        "login": "463693",
+        "password": "NEgyMTZ6ZmQ=",
+
+        "saison" : "2018",
+        "date_debut": "01/08/2017",
+        "date_fin": "31/09/2018",
+        "type_structure": "LIG",
+        "code_structure": "CR11"
+    },
+    "bdd": {
+        "url": "sqlite:$LIB_HOME/data/base-cr-2018.sqlite",
+        "login": "",
+        "password": ""
+    },
+    "cuts":[
+        {
+            "name":"CR Occitanie CL Scratch Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CR Occitanie CL Scratch Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CR Occitanie CO Scratch Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CR Occitanie CO Scratch Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CR Occitanie CL Scratch Homme FITA",
+            "discipline" : "F",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CR Occitanie CL Scratch Femme FITA",
+            "discipline" : "F",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CR Occitanie CO Scratch Homme FITA",
+            "discipline" : "F",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CR Occitanie CO Scratch Femme FITA",
+            "discipline" : "F",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "64"
+        }
+
+    ]
+
+
+}
