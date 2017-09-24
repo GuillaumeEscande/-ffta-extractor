@@ -54,7 +54,7 @@ foreach( $cutManager->get_cut_name_list() as $cutname ){
 
 
 if( isset($_REQUEST['select_cut']) ){
-  $cutManager->print_cut(urldecode($_REQUEST['select_cut']), true, true);
+  $cutManager->print_cut(urldecode($_REQUEST['select_cut']), true, true, 'select_cut');
 }
 
 if( isset($_REQUEST['submit_generate_data'])){

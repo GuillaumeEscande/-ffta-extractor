@@ -67,8 +67,8 @@ class Cut_manager
     }
     
     
-    public function print_cut ($cutName, $div=false, $admin=false){
-        $this->_printer->print_cut( $cutName, $div, $admin );
+    public function print_cut ($cutName, $div=false, $admin=false, $print_param=""){
+        $this->_printer->print_cut( $cutName, $div, $admin, $print_param );
     }
 
     public function get_cut_name_list (){

@@ -12,7 +12,12 @@ class Printer
         $this->_bdd = $bdd;
     }
 
-    public function print_cut( $cut_name, $div=false, $admin=false ){
+    public function print_cut( $cut_name, $div=false, $admin=false, $print_param="" ){
+
+        // Update status archer
+        if( $admin ){
+            $this->update_status();
+        }
 
         // Récupération des données
         $pdo = $this->_bdd->get_PDO();
@@ -54,6 +59,20 @@ class Printer
                     if( $div ) echo("</div>\n"); // divTableHead
                     else echo "</th>\n";
                 }
+
+                if( $admin ){
+                    // Start Column
+                    if( $div ) echo("<div class='divTableHead' >");
+                    else echo "<th>";
+
+                    // Column
+                    echo "UPDATE";
+
+                    // End Column
+                    if( $div ) echo("</div>\n"); // divTableHead
+                    else echo "</th>\n";
+                }
+
 
                 // End Row
                 if( $div ) echo("</div>\n"); //  divTableRow divTableHeading
@@ -114,6 +133,41 @@ class Printer
                 else echo "</td>\n";
             }
 
+            
+
+            if( $admin ){
+                // Start Column
+                if( $div ) echo("<div class='divTableHead' >");
+                else echo "<th>";
+
+                // Column
+                echo "<form name='change_mode' method='post' >";
+                echo "<select name='select_mode_archer'>";
+
+                echo "<option value=0 ";
+                if( $row['ETAT'] == 0 ) echo "selected='selected' ";
+                echo ">Non Inscrit</option>";
+
+                echo "<option value=1 ";
+                if( $row['ETAT'] == 1 ) echo "selected='selected' ";
+                echo ">Inscrit</option>";
+
+                echo "<option value=2 ";
+                if( $row['ETAT'] == 2 ) echo "selected='selected' ";
+                echo ">Refus</option>";
+
+                echo "</select>";
+                echo "<input type='hidden' name='id' value='".$row['NO_LICENCE']."' >";
+                echo "<input type='hidden' name='cut' value='".urlencode($cut_name)."' >";
+                echo "<input type='hidden' name='".$print_param."' value='".urlencode($cut_name)."' >";
+                echo "<input type='submit' value='Valider'/>";
+                echo "</form>";
+
+                // End Column
+                if( $div ) echo("</div>\n"); // divTableHead
+                else echo "</th>\n";
+            }
+
             // End Row
             if( $div ) echo("</div>\n");// divTableRow
             else echo "</tr>\n";
@@ -123,6 +177,29 @@ class Printer
         if( $div ) echo("</div>\n"); //divTableBody
         if( $div ) echo("</div>\n"); //divTable
         else echo("</table>\n");
+    }
+
+    public function update_status( ){
+
+        if( isset($_REQUEST['select_mode_archer'])){
+            $id = $_REQUEST['id'];
+            $cut_name = urldecode($_REQUEST['cut']);
+            $mode = $_REQUEST['select_mode_archer'];
+
+            $pdo = $this->_bdd->get_PDO();
+            $table_name = $this->_bdd->get_table_cut_name($cut_name);
+
+            $sth_update = $pdo->prepare("UPDATE $table_name SET ETAT=:ETAT WHERE NO_LICENCE=:NO_LICENCE");
+            
+            $sth_update->bindValue(":NO_LICENCE", $id);
+            $sth_update->bindValue(":ETAT", $mode);
+
+            try{
+                $sth_update->execute();
+            }catch (\PDOException $e){
+                echo "Echec de l'a mise a jour du nouvel état de ".$archer["NO_LICENCE"]." dans ".$cut_name." : ".$e."<br/>\n";
+            }
+        }
     }
 }
 
