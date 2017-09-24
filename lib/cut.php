@@ -173,7 +173,7 @@ class CUT
             $sth_score_exist->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
             $sth_score_exist->execute();
             
-            if( $sth_score_exist->columnCount() > 0 ){
+            if( count ($sth_score_exist->fetchAll()) > 0 ){
                 // Update
                 $sth_update->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
                 $sth_update->bindValue(":SCORE_TOTAL", $score_total);
