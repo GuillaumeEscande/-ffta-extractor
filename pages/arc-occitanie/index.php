@@ -3,6 +3,8 @@
 include_once dirname(__FILE__)."/../../cut_manager.php";
 $cutManager = new ffta_extractor\Cut_manager("CR11-2017.json");
 
+$cutManager->manage_export();
+
 ?>
 
 <html>
@@ -50,7 +52,7 @@ foreach( $cutManager->get_cut_name_list() as $cutname ){
 <?php
 
 if( isset($_REQUEST['select_cut']) ){
-  $cutManager->print_cut(urldecode($_REQUEST['select_cut']), true);
+  $cutManager->print_cut(urldecode($_REQUEST['select_cut']), true, true);
 }
 
 ?>

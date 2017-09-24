@@ -5,6 +5,7 @@ include_once "lib/request.php";
 include_once "lib/bdd.php";
 include_once "lib/cut.php";
 include_once "lib/printer.php";
+include_once "lib/export.php";
 
 class Cut_manager
 {
@@ -14,6 +15,7 @@ class Cut_manager
     private $_bdd = NULL;
     private $_cut = NULL;
     private $_printer = NULL;
+    private $_export = NULL;
 
     public function __construct($conf_file_name)
     {
@@ -21,7 +23,9 @@ class Cut_manager
         $this->_request = new RequestExtranet( $this->_configuration );
         $this->_bdd = new BDD( $this->_configuration );
         $this->_cut = new Cut( $this->_configuration, $this->_bdd );
-        $this->_printer = new Printer( $this->_configuration, $this->_bdd );
+        $this->_export = new Export( $this->_configuration, $this->_bdd );
+        $this->_printer = new Printer( $this->_configuration, $this->_bdd, $this->_export );
+        
     }
 
 
@@ -67,12 +71,15 @@ class Cut_manager
     }
     
     
-    public function print_cut ($cutName, $div=false, $admin=false, $print_param=""){
-        $this->_printer->print_cut( $cutName, $div, $admin, $print_param );
+    public function print_cut ($cutName, $div=false, $export=true, $admin=false, $print_param=""){
+        $this->_printer->print_cut( $cutName, $div, $export, $admin, $print_param );
     }
 
     public function get_cut_name_list (){
         return $this->_configuration->get_configuration_cut_names();
+    }
+    public function manage_export (){
+        return $this->_export->manage_export();
     }
 
 }

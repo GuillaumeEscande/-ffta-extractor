@@ -5,14 +5,16 @@ class Printer
 
     private $_configuration;
     private $_bdd;
+    private $_export;
 
-    public function __construct( $configuration, $bdd )
+    public function __construct( $configuration, $bdd, $export )
     {
         $this->_configuration = $configuration;
         $this->_bdd = $bdd;
+        $this->_export = $export;
     }
 
-    public function print_cut( $cut_name, $div=false, $admin=false, $print_param="" ){
+    public function print_cut( $cut_name, $div=false, $export=true, $admin=false, $print_param="" ){
 
         // Update status archer
         if( $admin ){
@@ -104,37 +106,18 @@ class Printer
                 else echo "<td>";
 
                 // Column
-                if( $key == "SCORE_TOTAL" ){
-
-                    echo strval( ceil( $field ) );
-
-                } elseif ( $key == "ETAT" ){
-                    
-                    switch($field){
-                        case 0:
-                            echo "";
-                            $cpt_participants++;
-                        break;
-                        case 1:
-                            echo "INSCRIT";
-                            $cpt_participants++;
-                        break;
-                        case 2:
-                            echo "REFU";
-                        break;
-                    }
-
-                } else {
-                    echo htmlspecialchars($field);
-                }             
-
+                echo Printer::row_to_string($key, $field);
+    
                 // End Column
                 if( $div ) echo("</div>\n");// divTableCell
                 else echo "</td>\n";
             }
-
             
+            if( $row['ETAT'] != 2 ){
+                $cpt_participants++;
+            }      
 
+        
             if( $admin ){
                 // Start Column
                 if( $div ) echo("<div class='divTableHead' >");
@@ -177,6 +160,10 @@ class Printer
         if( $div ) echo("</div>\n"); //divTableBody
         if( $div ) echo("</div>\n"); //divTable
         else echo("</table>\n");
+
+        if($export){
+            $this->_export->print_export_icons( $cut_name );
+        }
     }
 
     public function update_status( ){
@@ -200,6 +187,27 @@ class Printer
                 echo "Echec de l'a mise a jour du nouvel état de ".$archer["NO_LICENCE"]." dans ".$cut_name." : ".$e."<br/>\n";
             }
         }
+    }
+    
+    public static function etat_to_string( $valeur ){
+        switch($valeur){
+            case 0:
+                return "";
+            case 1:
+                return "INSCRIT";
+            case 2:
+                return "REFU";
+        }
+    }
+
+    public static function row_to_string( $cles, $valeur ){
+        if( $cles == "SCORE_TOTAL" ){
+            return  strval( ceil( $valeur ) );
+        } elseif ( $cles == "ETAT" ){
+            return Printer::etat_to_string($valeur);
+        } else {
+            return htmlspecialchars($valeur);
+        } 
     }
 }
 
