@@ -28,7 +28,7 @@ class Printer
         $stmt->execute();
         $result = $stmt->fetchAll();
 
-        $nb_score_cut = $this->_configuration->get_configuration_cut($cut_name, "nb_score");
+        $taille_cut = $this->_configuration->get_configuration_cut($cut_name, "taille");
 
         $cpt_participants = 0;
 
@@ -88,7 +88,7 @@ class Printer
             elseif( $row['ETAT'] == 2 )
                 $classe_status = "cutRefu";
             else {
-                if ( $cpt_participants < $nb_score_cut )
+                if ( $cpt_participants < $taille_cut )
                     $classe_status = "cutPotentiel";
                 else 
                     $classe_status = "cutHorsCut";
