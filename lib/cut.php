@@ -1,5 +1,7 @@
 <?php namespace ffta_extractor;
 
+define("DEBUG", true);
+
 class CUT
 {
 
@@ -160,14 +162,18 @@ class CUT
             $sth_score->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
             $sth_score->execute();
             
+            if(CONSTANT) echo "|  |  |  DEBUG : Calcul du score de ".$archer["NO_LICENCE"]." - ";
+
             $result = $sth_score->fetchAll();
             $score_total = 0;
             for($i = 0; $i < $nb_score; $i++){
                 if( $i < count($result) ){
                     $score_total += $result[$i]["SCORE"];
+                    if(CONSTANT) echo strval($result[$i]["SCORE"]).", ";
                 }
             }
             $score_total /= $nb_score;
+            if(CONSTANT) echo " = ".strval($score_total)." </br>\n";
 
             // Check de l'existance d'un score
             $sth_score_exist->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);

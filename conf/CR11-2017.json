@@ -328,7 +328,7 @@
             "sexe" : "F",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CL",
-            "nb_score" : "16",
+            "nb_score" : "2",
             "taille" : "64"
         },
         {
@@ -337,7 +337,7 @@
             "sexe" : "H",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CL",
-            "nb_score" : "32",
+            "nb_score" : "2",
             "taille" : "64"
         },
         {
@@ -346,7 +346,7 @@
             "sexe" : "F",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CO",
-            "nb_score" : "8",
+            "nb_score" : "2",
             "taille" : "64"
         },
         {
@@ -355,7 +355,7 @@
             "sexe" : "H",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CO",
-            "nb_score" : "16",
+            "nb_score" : "2",
             "taille" : "64"
         }
 
