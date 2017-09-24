@@ -23,6 +23,8 @@ class BDD
                 $this->_configuration->get_configuration_bdd("password") );
                 $this->_pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
                 $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->_pdo->query("PRAGMA synchronous = OFF");
+                $this->_pdo->query("PRAGMA journal_mode = MEMORY");
         } catch(Exception $e) {
             echo "Impossible d'accéder à la base de données ".$this->_configuration->get_configuration_bdd("url")." : ".$e->getMessage();
             die();
@@ -86,16 +88,21 @@ class BDD
     }
 
     public function get_table_cut_name($cut_name){
-        return str_replace(' ', '_', "CUT_".$cut_name);
+        $cut_name="CUT_".$cut_name;
+        $cut_name=str_replace(' ', '_', $cut_name);
+        $cut_name=str_replace('-', '_', $cut_name);
+        return $cut_name;
     }
 
-    public function create_table_cut($cut_name){
+    public function create_table_cut($cut_name, $replace=true){
 
         $table_name = $this->get_table_cut_name($cut_name);
 
-        $this->_pdo->query("DROP TABLE IF EXISTS $table_name") or die("Error to DROP $table_name");
+        if($replace){
+            $this->_pdo->query("DROP TABLE IF EXISTS $table_name") or die("Error to DROP $table_name");
+        }
 
-        $query = "CREATE TABLE $table_name(
+        $query = "CREATE TABLE IF NOT EXISTS $table_name(
             RANK int DEFAULT 0,
             NO_LICENCE text NOT NULL PRIMARY KEY,
             NOM_PERSONNE text NOT NULL,

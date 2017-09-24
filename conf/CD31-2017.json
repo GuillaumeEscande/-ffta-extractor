@@ -1,0 +1,365 @@
+{
+    "ffta": {
+        "login": "463693",
+        "password": "NEgyMTZ6ZmQ=",
+
+        "saison" : "2017",
+        "date_debut": "01/08/2016",
+        "date_fin": "31/09/2017",
+        "type_structure": "DEP",
+        "code_structure": "31000"
+    },
+    "bdd": {
+        "url": "sqlite:$LIB_HOME/data/base-cd31-2017.sqlite",
+        "login": "",
+        "password": ""
+    },
+
+    "cuts":[
+        {
+            "name":"CL Poussin Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["P" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "4"
+        },
+        {
+            "name":"CL Poussin Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["P" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "4"
+        },
+        {
+            "name":"CL Benjamin Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["B" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CL Benjamin Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["B" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "4"
+        },
+        {
+            "name":"CL Minime Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["M" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "8"
+        },
+        {
+            "name":"CL Minime Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["M" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CL Cadet Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CL Cadet Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "32"
+        },
+        {
+            "name":"CL Junior Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["J" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "8"
+        },
+        {
+            "name":"CL Junior Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["J" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CO Cadet Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "3"
+        },
+        {
+            "name":"CO Cadet Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "3"
+        },
+        {
+            "name":"CO Junior Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["J" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "3"
+        },
+        {
+            "name":"CO Junior Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["J" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "3"
+        },
+        {
+            "name":"BB Cadet Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["C","M" ],
+            "arme" : "BB",
+            "nb_score" : "2",
+            "taille" : "3"
+        },
+        {
+            "name":"BB Cadet Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["C","M" ],
+            "arme" : "BB",
+            "nb_score" : "2",
+            "taille" : "3"
+        },
+        {
+            "name":"CL Senior Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["S"],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CL Senior Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["S"],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "32"
+        },
+        {
+            "name":"CL Veteran Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["V"],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "6"
+        },
+        {
+            "name":"CL Veteran Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["V"],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CL Super-Veteran Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV"],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "4"
+        },
+        {
+            "name":"CL Super-Veteran Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV"],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "16"
+        },
+        {
+            "name":"CO Senior Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["S"],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "4"
+        },
+        {
+            "name":"CO Senior Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["S"],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "12"
+        },
+        {
+            "name":"CO Veteran Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["V"],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "3"
+        },
+        {
+            "name":"CO Veteran Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["V"],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "6"
+        },
+        {
+            "name":"CO Super-Veteran Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV"],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "3"
+        },
+        {
+            "name":"CO Super-Veteran Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV"],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "8"
+        },
+        {
+            "name":"BB Scratch Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "BB",
+            "nb_score" : "2",
+            "taille" : "8"
+        },
+        {
+            "name":"BB Scratch Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "BB",
+            "nb_score" : "2",
+            "taille" : "8"
+        },
+        {
+            "name":"CL Scratch Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CL Scratch Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CO Scratch Femme Salle",
+            "discipline" : "S",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CO Scratch Homme Salle",
+            "discipline" : "S",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CL Scratch Femme FITA",
+            "discipline" : "F",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CL Scratch Homme FITA",
+            "discipline" : "F",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CL",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CO Scratch Femme FITA",
+            "discipline" : "F",
+            "sexe" : "F",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "64"
+        },
+        {
+            "name":"CO Scratch Homme FITA",
+            "discipline" : "F",
+            "sexe" : "H",
+            "categorie" : ["SV", "V", "S", "J", "C" ],
+            "arme" : "CO",
+            "nb_score" : "2",
+            "taille" : "64"
+        }
+
+    ]
+
+
+}

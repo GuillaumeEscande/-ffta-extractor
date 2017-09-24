@@ -1,0 +1,10 @@
+<Files admin.php>
+    allow from all
+</Files>
+
+<Files index.php>
+    allow from all
+</Files>
+<Files cut.css>
+    allow from all
+</Files>
