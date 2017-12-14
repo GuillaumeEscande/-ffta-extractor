@@ -21,8 +21,8 @@
             "sexe" : "F",
             "categorie" : ["P" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "4"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Poussin Homme Salle",
@@ -30,8 +30,8 @@
             "sexe" : "H",
             "categorie" : ["P" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "4"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Benjamin Femme Salle",
@@ -39,8 +39,8 @@
             "sexe" : "F",
             "categorie" : ["B" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "16"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Benjamin Homme Salle",
@@ -48,8 +48,8 @@
             "sexe" : "H",
             "categorie" : ["B" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "4"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Minime Femme Salle",
@@ -57,8 +57,8 @@
             "sexe" : "F",
             "categorie" : ["M" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "8"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Minime Homme Salle",
@@ -66,8 +66,8 @@
             "sexe" : "H",
             "categorie" : ["M" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "16"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Cadet Femme Salle",
@@ -75,8 +75,8 @@
             "sexe" : "F",
             "categorie" : ["C" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "16"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Cadet Homme Salle",
@@ -84,8 +84,8 @@
             "sexe" : "H",
             "categorie" : ["C" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "32"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Junior Femme Salle",
@@ -93,8 +93,8 @@
             "sexe" : "F",
             "categorie" : ["J" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "8"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Junior Homme Salle",
@@ -102,8 +102,8 @@
             "sexe" : "H",
             "categorie" : ["J" ],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "16"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Cadet Femme Salle",
@@ -111,8 +111,8 @@
             "sexe" : "F",
             "categorie" : ["C" ],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "3"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Cadet Homme Salle",
@@ -120,8 +120,8 @@
             "sexe" : "H",
             "categorie" : ["C" ],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "3"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Junior Femme Salle",
@@ -129,8 +129,8 @@
             "sexe" : "F",
             "categorie" : ["J" ],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "3"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Junior Homme Salle",
@@ -138,8 +138,8 @@
             "sexe" : "H",
             "categorie" : ["J" ],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "3"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"BB Cadet Femme Salle",
@@ -147,8 +147,8 @@
             "sexe" : "F",
             "categorie" : ["C","M" ],
             "arme" : "BB",
-            "nb_score" : "2",
-            "taille" : "3"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"BB Cadet Homme Salle",
@@ -156,8 +156,8 @@
             "sexe" : "H",
             "categorie" : ["C","M" ],
             "arme" : "BB",
-            "nb_score" : "2",
-            "taille" : "3"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Senior Femme Salle",
@@ -165,8 +165,8 @@
             "sexe" : "F",
             "categorie" : ["S"],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "16"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Senior Homme Salle",
@@ -174,8 +174,8 @@
             "sexe" : "H",
             "categorie" : ["S"],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "32"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Veteran Femme Salle",
@@ -183,8 +183,8 @@
             "sexe" : "F",
             "categorie" : ["V"],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "6"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Veteran Homme Salle",
@@ -192,8 +192,8 @@
             "sexe" : "H",
             "categorie" : ["V"],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "16"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Super-Veteran Femme Salle",
@@ -201,8 +201,8 @@
             "sexe" : "F",
             "categorie" : ["SV"],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "4"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Super-Veteran Homme Salle",
@@ -210,8 +210,8 @@
             "sexe" : "H",
             "categorie" : ["SV"],
             "arme" : "CL",
-            "nb_score" : "2",
-            "taille" : "16"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Senior Femme Salle",
@@ -219,8 +219,8 @@
             "sexe" : "F",
             "categorie" : ["S"],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "4"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Senior Homme Salle",
@@ -228,8 +228,8 @@
             "sexe" : "H",
             "categorie" : ["S"],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "12"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Veteran Femme Salle",
@@ -237,8 +237,8 @@
             "sexe" : "F",
             "categorie" : ["V"],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "3"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Veteran Homme Salle",
@@ -246,8 +246,8 @@
             "sexe" : "H",
             "categorie" : ["V"],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "6"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Super-Veteran Femme Salle",
@@ -255,8 +255,8 @@
             "sexe" : "F",
             "categorie" : ["SV"],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "3"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CO Super-Veteran Homme Salle",
@@ -264,8 +264,8 @@
             "sexe" : "H",
             "categorie" : ["SV"],
             "arme" : "CO",
-            "nb_score" : "2",
-            "taille" : "8"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"BB Scratch Femme Salle",
@@ -273,8 +273,8 @@
             "sexe" : "F",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "BB",
-            "nb_score" : "2",
-            "taille" : "8"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"BB Scratch Homme Salle",
@@ -282,8 +282,8 @@
             "sexe" : "H",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "BB",
-            "nb_score" : "2",
-            "taille" : "8"
+            "nb_score" : "3",
+            "taille" : "64"
         },
         {
             "name":"CL Scratch Femme Salle",
@@ -291,7 +291,7 @@
             "sexe" : "F",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CL",
-            "nb_score" : "2",
+            "nb_score" : "3",
             "taille" : "64"
         },
         {
@@ -300,7 +300,7 @@
             "sexe" : "H",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CL",
-            "nb_score" : "2",
+            "nb_score" : "3",
             "taille" : "64"
         },
         {
@@ -309,7 +309,7 @@
             "sexe" : "F",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CO",
-            "nb_score" : "2",
+            "nb_score" : "3",
             "taille" : "64"
         },
         {
@@ -318,7 +318,7 @@
             "sexe" : "H",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CO",
-            "nb_score" : "2",
+            "nb_score" : "3",
             "taille" : "64"
         },
         {
@@ -327,7 +327,7 @@
             "sexe" : "F",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CL",
-            "nb_score" : "2",
+            "nb_score" : "3",
             "taille" : "64"
         },
         {
@@ -336,7 +336,7 @@
             "sexe" : "H",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CL",
-            "nb_score" : "2",
+            "nb_score" : "3",
             "taille" : "64"
         },
         {
@@ -345,7 +345,7 @@
             "sexe" : "F",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CO",
-            "nb_score" : "2",
+            "nb_score" : "3",
             "taille" : "64"
         },
         {
@@ -354,7 +354,7 @@
             "sexe" : "H",
             "categorie" : ["SV", "V", "S", "J", "C" ],
             "arme" : "CO",
-            "nb_score" : "2",
+            "nb_score" : "3",
             "taille" : "64"
         }
     ]

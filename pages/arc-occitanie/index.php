@@ -1,7 +1,7 @@
 <?php
 // Import de la librairie de gestion des cuts
 include_once dirname(__FILE__)."/../../cut_manager.php";
-$cutManager = new ffta_extractor\Cut_manager("CR11-2017.json");
+$cutManager = new ffta_extractor\Cut_manager("CR11-2018.json");
 
 $cutManager->manage_export();
 
@@ -27,7 +27,7 @@ $cutManager->manage_export();
         </td>
         <td>
           <h1>Classement des archers</h1>
-          avec les deux meilleurs scores de la saison 2017
+          avec les deux meilleurs scores de la saison 2018
         </td>
       </tr>
     </table>
