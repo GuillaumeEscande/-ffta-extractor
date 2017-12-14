@@ -138,7 +138,7 @@ class CUT
         //----------------------------
         echo "|  |  Extraction de la liste des archer - \n";
 
-        $query = "SELECT NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE 
+        $query = "SELECT NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE , NOM_STRUCTURE
         FROM RESULTS  
         WHERE  ".$querySubSelect." GROUP BY NO_LICENCE";
 
@@ -150,7 +150,7 @@ class CUT
 
         echo "|  |  Calcul des scores des archers - </br>\n";
 
-        $sth_insert = $pdo->prepare("INSERT INTO $table_name (NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE, SCORE_TOTAL) VALUES (:NO_LICENCE, :NOM_PERSONNE, :PRENOM_PERSONNE, :SCORE_TOTAL)");
+        $sth_insert = $pdo->prepare("INSERT INTO $table_name (NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE, CLUB, SCORES, SCORE_TOTAL) VALUES (:NO_LICENCE, :NOM_PERSONNE, :PRENOM_PERSONNE, :CLUB, :SCORES, :SCORE_TOTAL)");
         $sth_update = $pdo->prepare("UPDATE $table_name SET SCORE_TOTAL=:SCORE_TOTAL WHERE NO_LICENCE=:NO_LICENCE");
         $sth_score = $pdo->prepare("SELECT SCORE FROM RESULTS WHERE  $querySubSelect AND NO_LICENCE=:NO_LICENCE ORDER BY SCORE DESC");
         $sth_score_exist = $pdo->prepare("SELECT SCORE_TOTAL FROM $table_name WHERE NO_LICENCE=:NO_LICENCE");
@@ -164,10 +164,13 @@ class CUT
             
             if(DEBUG) echo "|  |  |  DEBUG : Calcul du score de ".$archer["NO_LICENCE"]." - ";
 
+            $scores = array ();
+
             $result = $sth_score->fetchAll();
             $score_total = 0;
             for($i = 0; $i < $nb_score; $i++){
                 if( $i < count($result) ){
+                    array_push($scores, $result[$i]["SCORE"] );
                     $score_total += $result[$i]["SCORE"];
                     if(DEBUG) echo strval($result[$i]["SCORE"]).", ";
                 }
@@ -193,6 +196,8 @@ class CUT
                 $sth_insert->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
                 $sth_insert->bindValue(":NOM_PERSONNE", $archer["NOM_PERSONNE"]);
                 $sth_insert->bindValue(":PRENOM_PERSONNE", $archer["PRENOM_PERSONNE"]);
+                $sth_insert->bindValue(":CLUB", $archer["NOM_STRUCTURE"]);
+                $sth_insert->bindValue(":SCORES", implode(",", $scores));
                 $sth_insert->bindValue(":SCORE_TOTAL", $score_total);
                 
                 try{

@@ -107,6 +107,8 @@ class BDD
             NO_LICENCE text NOT NULL PRIMARY KEY,
             NOM_PERSONNE text NOT NULL,
             PRENOM_PERSONNE text NOT NULL,  
+            CLUB text NOT NULL, 
+            SCORES text NOT NULL,
             SCORE_TOTAL int NOT NULL,
             ETAT int DEFAULT 0
         )";
