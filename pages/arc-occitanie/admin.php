@@ -1,6 +1,6 @@
 <?php
 // Import de la librairie de gestion des cuts
-include_once dirname(__FILE__)."/../../cut_manager.php";
+include_once dirname(__FILE__)."/ffta-extractor/cut_manager.php";
 $cutManager = new ffta_extractor\Cut_manager("CR11-2018.json");
 
 ?>
@@ -20,12 +20,12 @@ $cutManager = new ffta_extractor\Cut_manager("CR11-2018.json");
       <tr>
         <td>
           <a href="https://arc-occitanie.fr/">
-            <img src="https://arc-occitanie.fr/images/logo/20170722_logo_crtao_occitanie.png" width="150" height="150" border="0" title="Arc Occitanie"  alt="Arc Occitanie">
+            <img src="https://arc-occitanie.fr/images/logo/20171013_logo_crtao_all_blacks.jpg" width="150" height="150" border="0" title="Arc Occitanie"  alt="Arc Occitanie">
           </a>
         </td>
         <td>
           <h1>Classement des archers</h1>
-          avec les deux meilleurs scores de la saison 2018
+          saison 2018
         </td>
       </tr>
     </table>
