@@ -275,8 +275,10 @@ class CUT
 
                 $result_score_archer = $sth_get_scores->fetchAll();
 
+                //$data_trie[] = array( "NO_LICENCE"=>$archer["NO_LICENCE"],
+                //    "SCORES"=>array_slice($result_score_archer, $nb_score) );
                 $data_trie[] = array( "NO_LICENCE"=>$archer["NO_LICENCE"],
-                    "SCORES"=>array_slice($result_score_archer, $nb_score) );
+                    "SCORES"=>$result_score_archer );
 
             }
             // Trie des archer
