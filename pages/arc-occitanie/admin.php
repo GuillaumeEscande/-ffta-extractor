@@ -37,7 +37,11 @@ $cutManager = new ffta_extractor\Cut_manager("CR11-2018.json");
 
 <?php
 foreach( $cutManager->get_cut_name_list() as $cutname ){
-  echo "<option value=\"".urlencode($cutname)."\">".$cutname."</option>\n";
+  echo "<option value=\"".urlencode($cutname)."\"";
+  if ($cutname == urldecode($_REQUEST['select_cut'])){
+    echo " selected ";
+  }  
+  echo ">".$cutname."</option>\n";
 }
 ?>
         </select>
