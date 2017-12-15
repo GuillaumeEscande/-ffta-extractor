@@ -115,6 +115,7 @@ class CUT
         // STEP 1 : Création sous selection
         //----------------------------
         $querySubSelect = "NUM_DEPART='1' ";
+        $querySubSelect = "'1' ";
         
         // Discipline
         $discipline = $this->_configuration->get_configuration_cut($cut_name, "discipline");

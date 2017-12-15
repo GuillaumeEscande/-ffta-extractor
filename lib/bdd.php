@@ -108,7 +108,7 @@ class BDD
             NOM_PERSONNE text NOT NULL,
             PRENOM_PERSONNE text NOT NULL,  
             CLUB text NOT NULL, 
-            SCORES text NOT NULL,
+            SCORES text,
             SCORE_TOTAL int NOT NULL,
             ETAT int DEFAULT 0
         )";
