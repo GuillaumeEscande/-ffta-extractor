@@ -158,7 +158,7 @@ class Printer
                 echo ">Pré Inscrit</option>";
 
                 echo "<option value=2 ";
-                if( $row['ETAT'] == 3 ) echo "selected='selected' ";
+                if( $row['ETAT'] == 2 ) echo "selected='selected' ";
                 echo ">Inscrit</option>";
 
                 echo "<option value=3 ";
