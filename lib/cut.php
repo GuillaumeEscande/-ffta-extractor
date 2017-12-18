@@ -1,6 +1,6 @@
 <?php namespace ffta_extractor;
 
-define("DEBUG", true);
+define("DEBUG", false);
 
 class CUT
 {
