@@ -34,6 +34,13 @@ class Printer
 
         $cpt_participants = 0;
 
+
+        // Affichage des information :
+        echo("Taille du cut : ".$taille_cut."\n");
+        echo("</br>\n");
+        echo("Nombre d'archers : ".count($result)."\n");
+        echo("</br>\n");
+
         // Affichage de la table
 
         if( $div ) echo("<div class='cutTable divTable' >\n");
