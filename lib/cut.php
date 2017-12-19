@@ -156,7 +156,7 @@ class CUT
         echo "|  |  Calcul des scores des archers - </br>\n";
 
         $sth_insert = $pdo->prepare("INSERT INTO $table_name (NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE, CLUB, SCORES, SCORE_TOTAL) VALUES (:NO_LICENCE, :NOM_PERSONNE, :PRENOM_PERSONNE, :CLUB, :SCORES, :SCORE_TOTAL)");
-        $sth_update = $pdo->prepare("UPDATE $table_name SET SCORE_TOTAL=:SCORE_TOTAL WHERE NO_LICENCE=:NO_LICENCE");
+        $sth_update = $pdo->prepare("UPDATE $table_name SET SCORE_TOTAL=:SCORE_TOTAL, SCORES=:SCORES WHERE NO_LICENCE=:NO_LICENCE");
         $sth_score = $pdo->prepare("SELECT SCORE FROM RESULTS WHERE  $querySubSelect AND NO_LICENCE=:NO_LICENCE ORDER BY SCORE DESC");
         $sth_score_exist = $pdo->prepare("SELECT SCORE_TOTAL FROM $table_name WHERE NO_LICENCE=:NO_LICENCE");
         
@@ -191,6 +191,7 @@ class CUT
                 // Update
                 $sth_update->bindValue(":NO_LICENCE", $archer["NO_LICENCE"]);
                 $sth_update->bindValue(":SCORE_TOTAL", $score_total);
+                $sth_update->bindValue(":SCORES", implode(",", $scores));
                 try{
                     $sth_update->execute();
                 }catch (\PDOException $e){
