@@ -57,42 +57,90 @@ class Printer
                 if( $div ) echo("<div class='divTableRow divTableHeading' >\n");
                 else echo "<tr class='tableHeading' >\n";
 
-                // Row
-                foreach($row as $key => $field) {
-                    // Start Column
-                    if( $div ) echo("<div class='divTableHead' >");
-                    else echo "<th>";
+                // RANK
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Rang";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
 
-                    // Column
-                    echo htmlspecialchars($key);
-
-                    // End Column
-                    if( $div ) echo("</div>\n"); // divTableHead
-                    else echo "</th>\n";
-                }
+                // NO_LICENCE
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Licence";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+                
+                // NOM_PERSONNE
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Nom";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+                
+                // PRENOM_PERSONNE
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Prénom";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+                
+                // CLUB
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Club";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+                
+                // Score 1
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Score 1";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+                
+                // Score 2
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Score 2";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+                
+                // Score 3
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Score 3";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+                
+                // SCORE_TOTAL
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Score Total";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+                
+                // ETAT
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Etat Inscription";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
 
                 if( $admin ){
-                    // Start Column
-                    if( $div ) echo("<div class='divTableHead' >");
-                    else echo "<th>";
-
-                    // Column
-                    echo "UPDATE";
-
-                    // End Column
-                    if( $div ) echo("</div>\n"); // divTableHead
-                    else echo "</th>\n";
+                    // UPDATE
+                    if( $div ) echo("<div class='divTableCell' >");
+                    else echo "<td>";
+                    echo "Mise à jour";
+                    if( $div ) echo("</div>\n");// divTableCell
+                    else echo "</td>\n";
                 } else {
-                    // Start Column
-                    if( $div ) echo("<div class='divTableHead' >");
-                    else echo "<th>";
-
-                    // Column
+                    // UPDATE
+                    if( $div ) echo("<div class='divTableCell' >");
+                    else echo "<td>";
                     echo "Pré inscription";
-
-                    // End Column
-                    if( $div ) echo("</div>\n"); // divTableHead
-                    else echo "</th>\n";
+                    if( $div ) echo("</div>\n");// divTableCell
+                    else echo "</td>\n";
                 }
 
 
@@ -120,20 +168,77 @@ class Printer
             if( $div ) echo("<div class='divTableRow tableContent $classe_status' >\n");
             else echo "<tr class='tableContent  $classe_status' >\n";
 
-            // Row
-            foreach($row as $key => $field) {
+            // RANK
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo Printer::row_to_string('RANK', $row['RANK']);
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
 
-                // Start Column
-                if( $div ) echo("<div class='divTableCell' >");
-                else echo "<td>";
+            // NO_LICENCE
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo Printer::row_to_string('NO_LICENCE', $row['NO_LICENCE']);
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+            
+            // NOM_PERSONNE
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo Printer::row_to_string('NOM_PERSONNE', $row['NOM_PERSONNE']);
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+            
+            // PRENOM_PERSONNE
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo Printer::row_to_string('PRENOM_PERSONNE', $row['PRENOM_PERSONNE']);
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+            
+            // CLUB
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo Printer::row_to_string('CLUB', $row['CLUB']);
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+            
+            $score = explode ( ",", $row['SCORES']);
+            // Score 1
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo $score[0];
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+            
+            // Score 2
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo $score[1];
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+            
+            // Score 3
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo $score[2];
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+            
+            // SCORE_TOTAL
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo Printer::row_to_string('SCORE_TOTAL', $row['SCORE_TOTAL']);
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+            
+            // ETAT
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo Printer::row_to_string('ETAT', $row['ETAT']);
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
 
-                // Column
-                echo Printer::row_to_string($key, $field);
-    
-                // End Column
-                if( $div ) echo("</div>\n");// divTableCell
-                else echo "</td>\n";
-            }
             
             if( $row['ETAT'] != 2 ){
                 $cpt_participants++;
