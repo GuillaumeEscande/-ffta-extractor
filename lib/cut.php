@@ -120,6 +120,10 @@ class CUT
         // Discipline
         $discipline = $this->_configuration->get_configuration_cut($cut_name, "discipline");
         $querySubSelect .= $this->_bdd->create_and_cond_array($discipline, "DISCIPLINE");
+        
+        // Forule
+        $formule = $this->_configuration->get_configuration_cut($cut_name, "formule");
+        $querySubSelect .= $this->_bdd->create_and_cond_array($formule, "FORMULE_TIR");
 
         // Sexe
         $sexe = $this->_configuration->get_configuration_cut($cut_name, "sexe");
