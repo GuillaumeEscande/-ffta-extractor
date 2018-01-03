@@ -29,6 +29,10 @@ class Configuration
     public function get_configuration_bdd( $data ){
         return $this->_config["bdd"][$data];
     }
+
+    public function get_configuration_log( $data ){
+        return $this->_config["log"][$data];
+    }
     
     public function get_configuration_cut_names( ){
         return $this->_cuts_names;

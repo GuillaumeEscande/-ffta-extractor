@@ -6,11 +6,13 @@ include_once "lib/bdd.php";
 include_once "lib/cut.php";
 include_once "lib/printer.php";
 include_once "lib/export.php";
+include_once "lib/logger.php";
 
 class Cut_manager
 {
     
     private $_configuration = NULL;
+    private $_logger = NULL;
     private $_request = NULL;
     private $_bdd = NULL;
     private $_cut = NULL;
@@ -20,11 +22,13 @@ class Cut_manager
     public function __construct($conf_file_name)
     {
         $this->_configuration = new Configuration( dirname(__FILE__)."/conf/".$conf_file_name );
+
+        $this->_logger = new Logger( $this->_configuration );
         $this->_request = new RequestExtranet( $this->_configuration );
         $this->_bdd = new BDD( $this->_configuration );
         $this->_cut = new Cut( $this->_configuration, $this->_bdd );
         $this->_export = new Export( $this->_configuration, $this->_bdd );
-        $this->_printer = new Printer( $this->_configuration, $this->_bdd, $this->_export );
+        $this->_printer = new Printer( $this->_configuration, $this->_bdd, $this->_export, $this->_logger );
         
     }
 

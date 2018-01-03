@@ -1,3 +1,4 @@
+
 <?php
 // Import de la librairie de gestion des cuts
 include_once dirname(__FILE__)."/../../cut_manager.php";

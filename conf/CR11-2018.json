@@ -14,6 +14,12 @@
         "login": "",
         "password": ""
     },
+    "log":{
+        "url": "sqlite:$LIB_HOME/data/base-cr11-2018.log.sqlite",
+        "login": "",
+        "password": "",
+        "level":"DEBUG"
+    },
     "cuts":[
         {
             "name":"CL Poussin Femme",
@@ -23,7 +29,7 @@
             "categorie" : ["P" ],
             "arme" : "CL",
             "nb_score" : "3",
-            "taille" : "2"
+            "taille" : "3"
         },
         {
             "name":"CL Poussin Homme",
@@ -33,7 +39,7 @@
             "categorie" : ["P" ],
             "arme" : "CL",
             "nb_score" : "3",
-            "taille" : "6"
+            "taille" : "5"
         },
         {
             "name":"CL Benjamin Femme",
@@ -53,7 +59,7 @@
             "categorie" : ["B" ],
             "arme" : "CL",
             "nb_score" : "3",
-            "taille" : "24"
+            "taille" : "22"
         },
         {
             "name":"CL Minime Femme",
@@ -63,7 +69,7 @@
             "categorie" : ["M" ],
             "arme" : "CL",
             "nb_score" : "3",
-            "taille" : "24"
+            "taille" : "22"
         },
         {
             "name":"CL Minime Homme",
@@ -163,7 +169,7 @@
             "categorie" : ["P", "B", "C", "M", "J" ],
             "arme" : "BB",
             "nb_score" : "3",
-            "taille" : "24"
+            "taille" : "6"
         },
         {
             "name":"BB Jeune Homme",
@@ -173,7 +179,7 @@
             "categorie" : ["P", "B", "C", "M", "J" ],
             "arme" : "BB",
             "nb_score" : "3",
-            "taille" : "40"
+            "taille" : "2"
         },
         {
             "name":"CL Senior Femme",

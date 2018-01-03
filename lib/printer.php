@@ -6,12 +6,14 @@ class Printer
     private $_configuration;
     private $_bdd;
     private $_export;
+    private $_logger;
 
-    public function __construct( $configuration, $bdd, $export )
+    public function __construct( $configuration, $bdd, $export, $logger )
     {
         $this->_configuration = $configuration;
         $this->_bdd = $bdd;
         $this->_export = $export;
+        $this->_logger = $logger;
     }
 
     public function print_cut( $cut_name, $div=false, $export=true, $admin=false, $print_param="" ){
@@ -207,21 +209,24 @@ class Printer
             // Score 1
             if( $div ) echo("<div class='divTableCell' >");
             else echo "<td>";
-            echo $score[0];
+            if( isset( $score[0] ))
+                echo $score[0];
             if( $div ) echo("</div>\n");// divTableCell
             else echo "</td>\n";
             
             // Score 2
             if( $div ) echo("<div class='divTableCell' >");
             else echo "<td>";
-            echo $score[1];
+            if( isset( $score[1] ))
+                echo $score[1];
             if( $div ) echo("</div>\n");// divTableCell
             else echo "</td>\n";
             
             // Score 3
             if( $div ) echo("<div class='divTableCell' >");
             else echo "<td>";
-            echo $score[2];
+            if( isset( $score[2] ))
+                echo $score[2];
             if( $div ) echo("</div>\n");// divTableCell
             else echo "</td>\n";
             
@@ -272,7 +277,7 @@ class Printer
 
                 echo "</select>";
                 echo "<input type='hidden' name='id' value='".$row['NO_LICENCE']."' >";
-                echo "<input type='hidden' name='select_cut' value='".urlencode($cut_name)."' >";
+                echo "<input type='hidden' id='select_cut' name='select_cut' value='".urlencode($cut_name)."' >";
                 echo "<input type='hidden' name='".$print_param."' value='".urlencode($cut_name)."' >";
                 echo "<input type='submit' value='Valider'/>";
                 echo "</form>";
@@ -330,6 +335,7 @@ class Printer
 
             try{
                 $sth_update->execute();
+                $this->_logger->log_operation(0, 1, "User : Préinscription de l'archer ".$id);
             }catch (\PDOException $e){
                 echo "Echec de l'a mise a jour du nouvel état de ".$archer["NO_LICENCE"]." dans ".$cut_name." : ".$e."<br/>\n";
             }
@@ -352,6 +358,7 @@ class Printer
 
             try{
                 $sth_update->execute();
+                $this->_logger->log_operation(0, 1, "Admin : Changement de l'état de l'archer ".$id." vers l'état ".$this->etat_to_string($mode));
             }catch (\PDOException $e){
                 echo "Echec de l'a mise a jour du nouvel état de ".$archer["NO_LICENCE"]." dans ".$cut_name." : ".$e."<br/>\n";
             }

@@ -1,0 +1,15 @@
+deny from all
+<Files admin.php>
+    allow from all
+    AuthName "Page d'administration protégée"
+    AuthType Basic
+    AuthUserFile "/home/arcoccitav/www/classement/.htpasswd"
+    Require valid-user
+</Files>
+<Files index.php>
+    allow from all
+</Files>
+<Files cut.css>
+    allow from all
+</Files>
+
