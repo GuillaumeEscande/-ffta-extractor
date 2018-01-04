@@ -74,7 +74,7 @@ class Logger
 
     public function print_logs( $div=false ){
         $pdo = $this->_pdo;
-        $query = $pdo->query("SELECT * FROM LOGS ORDER BY ID ASC");
+        $query = $pdo->query("SELECT * FROM LOGS ORDER BY ID DESC");
         $result = $query->fetchAll();
 
         if( $div ) echo("<div class='cutTable divTable' >\n");
