@@ -34,13 +34,21 @@ class Printer
 
         $taille_cut = $this->_configuration->get_configuration_cut($cut_name, "taille");
 
+        $nb_preinscrit = $pdo->query("SELECT COUNT(*) FROM $table_name WHERE ETAT='1'")->fetchColumn();
+        $nb_inscrit = $pdo->query("SELECT COUNT(*) FROM $table_name WHERE ETAT='2'")->fetchColumn();
+
         $cpt_participants = 0;
 
 
         // Affichage des information :
+        echo("Nombre d'archers : ".count($result)."\n");
+        echo("</br>\n");
         echo("Taille du cut : ".$taille_cut."\n");
         echo("</br>\n");
-        echo("Nombre d'archers : ".count($result)."\n");
+        echo("Nombre de préinscrit : ".$nb_preinscrit."\n");
+        echo("</br>\n");
+        echo("Nombre d'inscription validé : ".$nb_inscrit."\n");
+        echo("</br>\n");
         echo("</br>\n");
 
         // Affichage de la table
@@ -277,7 +285,7 @@ class Printer
 
                 echo "</select>";
                 echo "<input type='hidden' name='id' value='".$row['NO_LICENCE']."' >";
-                echo "<input type='hidden' id='select_cut' name='select_cut' value='".urlencode($cut_name)."' >";
+                echo "<input type='hidden' name='select_cut' value='".urlencode($cut_name)."' >";
                 echo "<input type='hidden' name='".$print_param."' value='".urlencode($cut_name)."' >";
                 echo "<input type='submit' value='Valider'/>";
                 echo "</form>";

@@ -71,6 +71,105 @@ class Logger
         $this->sth_insert->execute();
 
     }
+
+    public function print_logs( $div=false ){
+        $pdo = $this->_pdo;
+        $query = $pdo->query("SELECT * FROM LOGS ORDER BY ID ASC");
+        $result = $query->fetchAll();
+
+        if( $div ) echo("<div class='cutTable divTable' >\n");
+        else echo("<table class='cutTable' >\n");
+
+        $first_row = true;
+        foreach ($result as $row) {
+            // Affiche le menu de la table
+            if ($first_row) {
+                $first_row = false;
+
+                // Start Row
+                if( $div ) echo("<div class='divTableRow divTableHeading' >\n");
+                else echo "<tr class='tableHeading' >\n";
+
+
+                // ID
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Id";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+
+                // TIMESTAMP_MSG
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Date";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+
+                // IP_USER
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "IP";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+
+                // OPERATION
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo "Opération";
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+
+
+                // End Row
+                if( $div ) echo("</div>\n"); //  divTableRow divTableHeading
+                else echo "</tr>\n";
+                
+                if( $div ) echo("<div class='divTableBody' >\n");
+            }
+
+
+            // Start Row
+            if( $div ) echo("<div class='divTableRow tableContent ' >\n");
+            else echo "<tr class='tableContent  ' >\n";
+
+            // RANK
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo $row['ID'];
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+
+            // TIMESTAMP_MSG
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo $row['TIMESTAMP_MSG'];
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+
+            // IP_USER
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo $row['IP_USER'];
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+
+            // OPERATION
+            if( $div ) echo("<div class='divTableCell' >");
+            else echo "<td>";
+            echo $row['OPERATION'];
+            if( $div ) echo("</div>\n");// divTableCell
+            else echo "</td>\n";
+
+            // End Row
+            if( $div ) echo("</div>\n");// divTableRow
+            else echo "</tr>\n";
+        }
+        
+        if( $div ) echo("</div>\n"); //divTableBody
+        if( $div ) echo("</div>\n"); //divTable
+        else echo("</table>\n");
+
+    } 
 } 
 
 ?>

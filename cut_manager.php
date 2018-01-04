@@ -82,9 +82,15 @@ class Cut_manager
     public function get_cut_name_list (){
         return $this->_configuration->get_configuration_cut_names();
     }
+
     public function manage_export (){
         return $this->_export->manage_export();
     }
+
+    public function print_logs ($div=false){
+        return $this->_logger->print_logs($div);
+    }
+    
 
 }
 

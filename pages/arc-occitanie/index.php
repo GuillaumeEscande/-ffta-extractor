@@ -39,8 +39,10 @@ $cutManager->manage_export();
 <?php
 foreach( $cutManager->get_cut_name_list() as $cutname ){
   echo "<option value=\"".urlencode($cutname)."\"";
-  if ($cutname == urldecode($_REQUEST['select_cut'])){
-    echo " selected ";
+  if (isset( $_REQUEST['select_cut'] )) {
+    if ($cutname == urldecode($_REQUEST['select_cut'])){
+      echo " selected ";
+    } 
   }  
   echo ">".$cutname."</option>\n";
 }

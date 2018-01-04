@@ -39,8 +39,10 @@ $cutManager = new ffta_extractor\Cut_manager("CR11-2018.json");
 <?php
 foreach( $cutManager->get_cut_name_list() as $cutname ){
   echo "<option value=\"".urlencode($cutname)."\"";
-  if ($cutname == urldecode($_REQUEST['select_cut'])){
-    echo " selected ";
+  if (isset( $_REQUEST['select_cut'] )) {
+    if ($cutname == urldecode($_REQUEST['select_cut'])){
+      echo " selected ";
+    } 
   }  
   echo ">".$cutname."</option>\n";
 }
@@ -50,6 +52,9 @@ foreach( $cutManager->get_cut_name_list() as $cutname ){
       <p>
         <input type="submit" name="submit_select_cut_form" value="Lister les archers"></input>
       </p>
+    </form> 
+    <form name="show_log_journal" method="post" action="admin.php">
+        <input type="submit" name="submit_show_log_journal" value="Voir le journal d'évenement"></input>
     </form> 
     <form name="generate_data" method="post" action="admin.php">
         <input type="submit" name="submit_generate_data" value="Mettre à jour la base"></input>
@@ -64,6 +69,10 @@ if( isset($_REQUEST['select_cut']) ){
 
 if( isset($_REQUEST['submit_generate_data'])){
     $cutManager->generate_datas();
+}
+
+if( isset($_REQUEST['submit_show_log_journal'])){
+    $cutManager->print_logs(true);
 }
 
 ?>
