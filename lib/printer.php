@@ -343,7 +343,10 @@ class Printer
 
             try{
                 $sth_update->execute();
-                $this->_logger->log_operation(0, 1, "User : Préinscription de l'archer ".$id);
+
+                $row = $pdo->query("SELECT NOM_PERSONNE, PRENOM_PERSONNE, CLUB FROM $table_name WHERE NO_LICENCE='".$id."'")->fetch();
+                $this->_logger->log_operation(0, 1, "User : Préinscription de l'archer - ".$id." - ".$row['PRENOM_PERSONNE']." ".$row['NOM_PERSONNE']." - ".$row['CLUB']);
+
             }catch (\PDOException $e){
                 echo "Echec de l'a mise a jour du nouvel état de ".$archer["NO_LICENCE"]." dans ".$cut_name." : ".$e."<br/>\n";
             }
@@ -366,7 +369,10 @@ class Printer
 
             try{
                 $sth_update->execute();
-                $this->_logger->log_operation(0, 1, "Admin : Changement de l'état de l'archer ".$id." vers l'état ".$this->etat_to_string($mode));
+
+                $row = $pdo->query("SELECT NOM_PERSONNE, PRENOM_PERSONNE, CLUB FROM $table_name WHERE NO_LICENCE='".$id."' GROUP BY NO_LICENCE")->fetchColumn();
+                $this->_logger->log_operation(0, 1, "User : Préinscription de l'archer -".$id." - ".$row['PRENOM_PERSONNE']." ".$row['NOM_PERSONNE']." - ".$row['CLUB']);
+
             }catch (\PDOException $e){
                 echo "Echec de l'a mise a jour du nouvel état de ".$archer["NO_LICENCE"]." dans ".$cut_name." : ".$e."<br/>\n";
             }
