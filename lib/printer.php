@@ -319,7 +319,6 @@ class Printer
 
         }
         
-        if( $div ) echo("</div>\n"); //divTableBody
         if( $div ) echo("</div>\n"); //divTable
         else echo("</table>\n");
 
