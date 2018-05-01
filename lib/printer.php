@@ -253,7 +253,7 @@ class Printer
             else echo "</td>\n";
 
             
-            if( $row['ETAT'] != 2 ){
+            if( $row['ETAT'] != 3 ){
                 $cpt_participants++;
             }      
 
