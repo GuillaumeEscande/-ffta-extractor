@@ -53,12 +53,12 @@ class RequestExtranet extends Request
             "login[identifiant]" => $this->_configuration->get_configuration_ffta("login"),
             "login[idpassword]" => base64_decode($this->_configuration->get_configuration_ffta("password"))
         );
-        $this->curl("http://extranet.ffta.fr/", $data);
+        $this->curl("https://extranet.ffta.fr/", $data);
     }
     
     public function logout(){
         $data = array( );
-        $this->curl("http://extranet.ffta.fr/deconnexion.html", $data);
+        $this->curl("https://extranet.ffta.fr/deconnexion.html", $data);
     }
 
     public function get_document_url(){
@@ -76,9 +76,9 @@ class RequestExtranet extends Request
             "StartGen" => "Générer+les+documents"
         );
 
-        $reponse = $this->curl("http://extranet.ffta.fr/extractions/eprv-resind.html", $data);
+        $reponse = $this->curl("https://extranet.ffta.fr/extractions/eprv-resind.html", $data);
 
-        $regexp = "/http\:\/\/extranet\.ffta\.fr\/tmp\/resultats\/.*?\.csv/m";
+        $regexp = "/https\:\/\/extranet\.ffta\.fr\/tmp\/resultats\/.*?\.csv/m";
         preg_match($regexp, $reponse, $m );
         $file_url = $m[0]; 
 

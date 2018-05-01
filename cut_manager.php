@@ -47,6 +47,8 @@ class Cut_manager
         $csvUrl = $this->_request->get_document_url();
         echo "$csvUrl </br>\n";
 
+        $this->_logger->log_operation(0, 2, "Admin : Mise à jour de la base des scores avec le fichier $csvUrl");
+
         echo "Création de la table - ";
         $this->_bdd->create_table_results();
         echo "OK </br>\n";

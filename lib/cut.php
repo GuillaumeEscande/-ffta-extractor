@@ -27,6 +27,8 @@ class CUT
         $stmt = $this->_bdd->get_PDO()->prepare($query_prepare);
         
         $file = fopen ($csvUrl, "r");
+
+        if(DEBUG) echo "|  |  |  URL = $csvUrl<br/>\n";
         
         # drop first line
         $line = fgets ($file);
@@ -38,9 +40,10 @@ class CUT
 
             $corrected_line = str_replace("\"", "", $line);
             $corrected_line = iconv('ISO-8859-1','UTF-8//TRANSLIT', $corrected_line);
+            if(DEBUG) echo "|  |  |  $corrected_line<br/>\n";
             
             $values = explode(";", $corrected_line);
-            
+
             $cpt = 1;
             foreach( $values as $val ){ 
                 $stmt->bindValue($cpt, $val);

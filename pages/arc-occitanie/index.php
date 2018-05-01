@@ -1,7 +1,7 @@
 <?php
 // Import de la librairie de gestion des cuts
 include_once dirname(__FILE__)."/../../cut_manager.php";
-$cutManager = new ffta_extractor\Cut_manager("CR11-2018.json");
+$cutManager = new ffta_extractor\Cut_manager("CR11-2018-ext.json");
 $cutManager->manage_export();
 
 ?>
