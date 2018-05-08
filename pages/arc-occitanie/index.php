@@ -1,8 +1,11 @@
 <?php
 // Import de la librairie de gestion des cuts
 include_once dirname(__FILE__)."/../../cut_manager.php";
-$cutManager = new ffta_extractor\Cut_manager("CR11-2018-ext.json");
-$cutManager->manage_export();
+$cutManagerFITA = new ffta_extractor\Cut_manager("CR11-2018-FITA.json");
+$cutManagerFEDERAL = new ffta_extractor\Cut_manager("CR11-2018-FEDERAL.json");
+
+$cutManagerFITA->manage_export();
+$cutManagerFEDERAL->manage_export();
 
 ?>
 
@@ -32,15 +35,16 @@ $cutManager->manage_export();
     </table>
 
 
+    <h2>Categorie FITA</h2>
     <form name="select_cut_form" method="post" action="index.php">
       <p>
-        <select name="select_cut">
+        <select name="select_cut_fita">
 
 <?php
-foreach( $cutManager->get_cut_name_list() as $cutname ){
+foreach( $cutManagerFITA->get_cut_name_list() as $cutname ){
   echo "<option value=\"".urlencode($cutname)."\"";
-  if (isset( $_REQUEST['select_cut'] )) {
-    if ($cutname == urldecode($_REQUEST['select_cut'])){
+  if (isset( $_REQUEST['select_cut_fita'] )) {
+    if ($cutname == urldecode($_REQUEST['select_cut_fita'])){
       echo " selected ";
     } 
   }  
@@ -50,14 +54,41 @@ foreach( $cutManager->get_cut_name_list() as $cutname ){
         </select>
       </p>
       <p>
-        <input type="submit" name="submit_select_cut_form" value="Lister les archers"/>
+        <input type="submit" name="submit_select_cut_form" value="Lister les archers"></input>
+      </p>
+    </form> 
+
+
+    <h2>Categorie Fédéral</h2>
+    <form name="select_cut_form" method="post" action="index.php">
+      <p>
+        <select name="select_cut_federal">
+
+<?php
+foreach( $cutManagerFEDERAL->get_cut_name_list() as $cutname ){
+  echo "<option value=\"".urlencode($cutname)."\"";
+  if (isset( $_REQUEST['select_cut_federal'] )) {
+    if ($cutname == urldecode($_REQUEST['select_cut_federal'])){
+      echo " selected ";
+    } 
+  }  
+  echo ">".$cutname."</option>\n";
+}
+?>
+        </select>
+      </p>
+      <p>
+        <input type="submit" name="submit_select_cut_form" value="Lister les archers"></input>
       </p>
     </form> 
 
 <?php
 
-if( isset($_REQUEST['select_cut']) ){
-  $cutManager->print_cut(urldecode($_REQUEST['select_cut']), true, true);
+if( isset($_REQUEST['select_cut_fita']) ){
+  $cutManagerFITA->print_cut(urldecode($_REQUEST['select_cut_fita']), true, false, false, false, 'select_cut_fita');
+}
+if( isset($_REQUEST['select_cut_federal']) ){
+  $cutManagerFEDERAL->print_cut(urldecode($_REQUEST['select_cut_federal']), true, false, false, false, 'select_cut_federal');
 }
 
 ?>

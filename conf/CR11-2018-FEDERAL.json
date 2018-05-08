@@ -1,0 +1,268 @@
+{
+    "ffta": {
+        "login": "463693",
+        "password": "NEgyMTZ6ZmQK",
+
+        "saison" : "2018",
+        "date_debut": "01/08/2017",
+        "date_fin": "31/09/2018",
+        "type_structure": "LIG",
+        "code_structure": "CR11"
+    },
+    "bdd": {
+        "url": "sqlite:$LIB_HOME/data/base-cr11-ext-2018.sqlite",
+        "login": "",
+        "password": ""
+    },
+    "log":{
+        "url": "sqlite:$LIB_HOME/data/base-cr11-ext-2018.log.sqlite",
+        "login": "",
+        "password": "",
+        "level":"DEBUG"
+    },
+    "cuts":[
+        {
+            "name":"CL Benjamin Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["B" ],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "10"
+        },
+        {
+            "name":"CL Benjamin Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["B" ],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "22"
+        },
+        {
+            "name":"CL Minime Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["M" ],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "22"
+        },
+        {
+            "name":"CL Minime Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["M" ],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "40"
+        },
+        {
+            "name":"CL Cadet Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["C" ],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "20"
+        },
+        {
+            "name":"CL Cadet Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["C" ],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "37"
+        },
+        {
+            "name":"CL Junior Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["J" ],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "16"
+        },
+        {
+            "name":"CL Junior Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["J" ],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "16"
+        },
+        {
+            "name":"CO Cadet Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["C" ],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "3"
+        },
+        {
+            "name":"CO Cadet Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["C" ],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "8"
+        },
+        {
+            "name":"CO Junior Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["J" ],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "4"
+        },
+        {
+            "name":"CO Junior Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["J" ],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "8"
+        },
+        {
+            "name":"CL Senior Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["S"],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "32"
+        },
+        {
+            "name":"CL Senior Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["S"],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "40"
+        },
+        {
+            "name":"CL Veteran Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["V"],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "18"
+        },
+        {
+            "name":"CL Veteran Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["V"],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "34"
+        },
+        {
+            "name":"CL Super-Veteran Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["SV"],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "18"
+        },
+        {
+            "name":"CL Super-Veteran Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["SV"],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "34"
+        },
+        {
+            "name":"CO Senior Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["S"],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "10"
+        },
+        {
+            "name":"CO Senior Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["S"],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "32"
+        },
+        {
+            "name":"CO Veteran Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["V"],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "4"
+        },
+        {
+            "name":"CO Veteran Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["V"],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "16"
+        },
+        {
+            "name":"CO Super-Veteran Femme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "F",
+            "categorie" : ["SV"],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "4"
+        },
+        {
+            "name":"CO Super-Veteran Homme Federal",
+            "discipline" : "E",
+            "formule" : [""],
+            "sexe" : "H",
+            "categorie" : ["SV"],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "16"
+        }
+    ]
+
+
+}
+

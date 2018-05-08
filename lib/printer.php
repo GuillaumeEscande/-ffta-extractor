@@ -16,7 +16,7 @@ class Printer
         $this->_logger = $logger;
     }
 
-    public function print_cut( $cut_name, $div=false, $export=true, $admin=false, $print_param="" ){
+    public function print_cut( $cut_name, $div=false, $export=true, $admin=false, $inscription=false, $print_param="" ){
 
         // Update status archer
         if( $admin ){
@@ -130,12 +130,14 @@ class Printer
                 if( $div ) echo("</div>\n");// divTableCell
                 else echo "</td>\n";
                 
-                // ETAT
-                if( $div ) echo("<div class='divTableCell' >");
-                else echo "<td>";
-                echo "Etat Inscription";
-                if( $div ) echo("</div>\n");// divTableCell
-                else echo "</td>\n";
+                if ($inscription) {
+                    // ETAT
+                    if( $div ) echo("<div class='divTableCell' >");
+                    else echo "<td>";
+                    echo "Etat Inscription";
+                    if( $div ) echo("</div>\n");// divTableCell
+                    else echo "</td>\n";
+                }
 
                 if( $admin ){
                     // UPDATE
@@ -144,7 +146,7 @@ class Printer
                     echo "Mise à jour";
                     if( $div ) echo("</div>\n");// divTableCell
                     else echo "</td>\n";
-                } else {
+                } else if ($inscription) {
                     // UPDATE
                     if( $div ) echo("<div class='divTableCell' >");
                     else echo "<td>";
@@ -245,12 +247,14 @@ class Printer
             if( $div ) echo("</div>\n");// divTableCell
             else echo "</td>\n";
             
-            // ETAT
-            if( $div ) echo("<div class='divTableCell' >");
-            else echo "<td>";
-            echo Printer::row_to_string('ETAT', $row['ETAT']);
-            if( $div ) echo("</div>\n");// divTableCell
-            else echo "</td>\n";
+            if ($inscription) {
+                // ETAT
+                if( $div ) echo("<div class='divTableCell' >");
+                else echo "<td>";
+                echo Printer::row_to_string('ETAT', $row['ETAT']);
+                if( $div ) echo("</div>\n");// divTableCell
+                else echo "</td>\n";
+            }
 
             
             if( $row['ETAT'] != 3 ){
@@ -293,7 +297,7 @@ class Printer
                 // End Column
                 if( $div ) echo("</div>\n"); // divTableHead
                 else echo "</th>\n";
-            } else {
+            } else if ($inscription) {
                 // Start Column
                 if( $div ) echo("<div class='divTableHead' >");
                 else echo "<th>";
