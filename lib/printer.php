@@ -8,11 +8,12 @@ class Printer
     private $_export;
     private $_logger;
 
-    public function __construct( $configuration, $bdd, $export, $logger )
+    public function __construct( $configuration, $bdd, $export, $logger, $request )
     {
         $this->_configuration = $configuration;
         $this->_bdd = $bdd;
         $this->_export = $export;
+        $this->_request = $request;
         $this->_logger = $logger;
     }
 
@@ -303,12 +304,32 @@ class Printer
                 else echo "<th>";
 
                 if( $row['ETAT'] == 0 ){
-                    echo "<form name='preinscrire' method='post' >";
+					
+					echo "<script language='javascript'>\n";
+					echo "function submitform".$row['NO_LICENCE']."()\n";
+					echo "{\n";
+					echo "\t form = document.forms['preinscrire".$row['NO_LICENCE']."'];\n";
+					echo "\t date_naissance = prompt('Pour vérifier votre identité, veuillez saisir votre date de naissance (JJ/MM/AAAA)');\n";
+					
+					echo "\t if( date_naissance ){\n";
+					echo "\t\t input = document.createElement('input');\n";
+					echo "\t\t input.type = 'hidden';\n";
+					echo "\t\t input.name = 'date_naissance';\n";
+					echo "\t\t input.value = encodeURI(date_naissance);\n";
+					echo "\t\t form.appendChild(input);\n";
+					
+					echo "\t\t return true;\n";
+					echo "\t } else return false;\n";
+					echo "}\n";
+					echo "</script>\n";
+					
+					
+                    echo "<form name='preinscrire".$row['NO_LICENCE']."' method='post' onsubmit='return submitform".$row['NO_LICENCE']."()'>";
                     echo "<input type='hidden' name='preinscrire' value='true' >";
                     echo "<input type='hidden' name='id' value='".$row['NO_LICENCE']."' >";
                     echo "<input type='hidden' name='select_cut' value='".urlencode($cut_name)."' >";
                     echo "<input type='hidden' name='".$print_param."' value='".urlencode($cut_name)."' >";
-                    echo "<input type='submit' value='Pré inscrire'/>";
+                    echo "<input type='submit' value='Pré inscrire' type=button />";
                     echo "</form>";
                 }
 
@@ -336,28 +357,66 @@ class Printer
             $id = $_REQUEST['id'];
             $cut_name = urldecode($_REQUEST['select_cut']);
 
-            $pdo = $this->_bdd->get_PDO();
-            $table_name = $this->_bdd->get_table_cut_name($cut_name);
+			$date_naissance=$_REQUEST['date_naissance'];
+			
+			$this->_request->login();
+			
+			if($this->_request->check_date_naissance($id, $date_naissance)){
+			
+				$pdo = $this->_bdd->get_PDO();
+				$table_name = $this->_bdd->get_table_cut_name($cut_name);
 
-            $sth_update = $pdo->prepare("UPDATE $table_name SET ETAT=:ETAT WHERE NO_LICENCE=:NO_LICENCE");
-            
-            $sth_update->bindValue(":NO_LICENCE", $id);
-            $sth_update->bindValue(":ETAT", "1");
+				$sth_update = $pdo->prepare("UPDATE $table_name SET ETAT=:ETAT WHERE NO_LICENCE=:NO_LICENCE");
+				
+				$sth_update->bindValue(":NO_LICENCE", $id);
+				$sth_update->bindValue(":ETAT", "1");
 
-            try{
-                $sth_update->execute();
+				try{
+					$sth_update->execute();
 
-                $row = $pdo->query("SELECT NOM_PERSONNE, PRENOM_PERSONNE, CLUB FROM $table_name WHERE NO_LICENCE='".$id."'")->fetch();
-                $this->_logger->log_operation(0, 1, "User : Préinscription de l'archer - ".$id." - ".$row['PRENOM_PERSONNE']." ".$row['NOM_PERSONNE']." - ".$row['CLUB']);
+					$row = $pdo->query("SELECT NOM_PERSONNE, PRENOM_PERSONNE, CLUB FROM $table_name WHERE NO_LICENCE='".$id."'")->fetch();
+					$this->_logger->log_operation(0, 1, "User : Préinscription de l'archer - ".$id." - ".$row['PRENOM_PERSONNE']." ".$row['NOM_PERSONNE']." - ".$row['CLUB']);
 
-            }catch (\PDOException $e){
-                echo "Echec de l'a mise a jour du nouvel état de ".$archer["NO_LICENCE"]." dans ".$cut_name." : ".$e."<br/>\n";
-            }
+				}catch (\PDOException $e){
+					echo "Echec de l'a mise a jour du nouvel état de ".$id." dans ".$cut_name." : ".$e."<br/>\n";
+				}
+
+				$email = $this->_request->get_email( $id );
+				
+				$message = "Bonjour,\n";
+				$message .= "\n";
+				$message .= "Nous vons informons que votre demande de Pré-Inscription au Championnat Régional d'Occitanie à bien été prise en compte.\n";
+				$message .= "\n";
+				$message .= "Nom : ".$row['NOM_PERSONNE']."\n";
+				$message .= "Prénom : ".$row['PRENOM_PERSONNE']."\n";
+				$message .= "Club : ".$row['CLUB']."\n";
+				$message .= "Licence : ".$id."\n";
+				$message .= "Catégorie : ".$cut_name."\n";
+				$message .= "Etat : Pré Inscrit\n";
+				$message .= "\n";
+				$message .= "Si vous souhaitez vous désinscrire et annuler votre demande de Pré-Inscription au Championnat Régional d'Occitanie, veuillez envoyer un message à lionel.allasio@arc-occitanie.fr \n";
+				$message .= "\n";
+				$message .= "\n";
+				$message .= "Bien Cordialement\n";
+				$message .= "La gestion sportive du CRTAO\n";
+				$message .= "\n";
+							
+				Printer::send_mail ( $email , "[CRTAO] Pré-Inscription Championnat Regional CRTAO" ,  $message );
+				echo "<br/><br/>Pré Inscription OK - Un email vous a été envoyé à l'adresse $email - Vérifiez dans vos SPAMs<br/><br/>\n";
+			} else {
+				echo "<br/><br/>La date de naissance saisie n'est pas correcte : $date_naissance <br/><br/>\n";
+			}
+			
+			$this->_request->logout();
+			
+			
         }
     }
     
     public function update_status_admin( ){
         if( isset($_REQUEST['select_mode_archer'])){
+			
+			
             $id = $_REQUEST['id'];
             $cut_name = urldecode($_REQUEST['select_cut']);
             $mode = $_REQUEST['select_mode_archer'];
@@ -376,8 +435,32 @@ class Printer
                 $row = $pdo->query("SELECT NOM_PERSONNE, PRENOM_PERSONNE, CLUB FROM $table_name WHERE NO_LICENCE='".$id."'")->fetch();
                 $this->_logger->log_operation(0, 1, "Admin : Préinscription de l'archer -".$id." - ".$row['PRENOM_PERSONNE']." ".$row['NOM_PERSONNE']." - ".$row['CLUB']);
 
+				$this->_request->login();
+				$email = $this->_request->get_email( $id );
+				$this->_request->logout();
+				
+				$message = "Bonjour,\n";
+				$message .= "\n";
+				$message .= "Nous vons informons que le gestionnaire sportif du CRTAO à changé l'état de votre inscription :\n";
+				$message .= "\n";
+				$message .= "Nom : ".$row['NOM_PERSONNE']."\n";
+				$message .= "Prénom : ".$row['PRENOM_PERSONNE']."\n";
+				$message .= "Club : ".$row['CLUB']."\n";
+				$message .= "Licence : ".$id."\n";
+				$message .= "Catégorie : ".$cut_name."\n";
+				$message .= "\n";
+				$message .= "Etat : ".Printer::etat_to_string($mode)."\n";
+				$message .= "\n";
+				$message .= "Bien Cordialement\n";
+				$message .= "La gestion sportive du CRTAO\n";
+				$message .= "\n";
+							
+				Printer::send_mail ( $email , "[CRTAO] Inscription Championnat Regional CRTAO" ,  $message );	
+				
+				echo "<br/><br/>Un mail à été envoyé à $email pour le notifier du changement d'état de son inscription<br/><br/>\n";
+				
             }catch (\PDOException $e){
-                echo "Echec de l'a mise a jour du nouvel état de ".$archer["NO_LICENCE"]." dans ".$cut_name." : ".$e."<br/>\n";
+                echo "Echec de l'a mise a jour du nouvel état de ".$id." dans ".$cut_name." : ".$e."<br/>\n";
             }
         }
     }
@@ -404,6 +487,21 @@ class Printer
             return htmlspecialchars($valeur);
         } 
     }
+	
+	public static function send_mail($email, $obj, $message){
+						
+		//=====Création du header de l'e-mail
+		$header = "From: \"Site Arc Occitanie\"<noreply@arc-occitanie.fr>\n";
+		$header .= "Reply-to: \"Contact Arc Occitanie\"<contact@arc-occitanie.fr>\n";
+		$header .= "MIME-Version: 1.0\n";
+		$header .= "Content-Type: text/plain;charset=UTF-8\n";
+		//==========
+		
+		
+		mail ( $email , $obj, $message, $header );
+		
+	}
+	
 }
 
 ?>

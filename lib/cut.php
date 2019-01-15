@@ -14,6 +14,22 @@ class CUT
         $this->_bdd = $bdd;
     }
 
+    public function ingestScoreInBDD( $stmt, $values, $cpt_entree, $cpt_ligne ){
+		$cpt = 1;
+		foreach( $values as $val ){ 
+			$stmt->bindValue($cpt, $val);
+			$cpt++;
+		}
+	
+		try{
+			$result = $stmt->execute();
+			$cpt_entree ++;
+		}catch (\PDOException $e){
+			echo "|  |  |  Erreur d'insetion de la ligne : $cpt_ligne";
+			echo " : ".$e->getMessage( )."<br/>\n";
+		}
+	}
+	
     public function fill_all_results( $csvUrl ){
         
 
@@ -42,24 +58,23 @@ class CUT
             $corrected_line = iconv('ISO-8859-1','UTF-8//TRANSLIT', $corrected_line);
             if(DEBUG) echo "|  |  |  $corrected_line<br/>\n";
             
+			
             $values = explode(";", $corrected_line);
-
-            $cpt = 1;
-            foreach( $values as $val ){ 
-                $stmt->bindValue($cpt, $val);
-                $cpt++;
-            }
-
-            $cpt_ligne ++;
-        
-            try{
-                $result = $stmt->execute();
-                $cpt_entree ++;
-            }catch (\PDOException $e){
-                echo "|  |  |  Erreur d'insetion de la ligne : ";
-                echo $corrected_line;
-                echo " : ".$e->getMessage( )."<br/>\n";
-            }
+			// Cas particulier du 2X25M + 2X18M
+			if( $values[24] == "2X25M + 2X18M" ){
+				$values[24] = "2X25M";
+				$values[13] = strval(intval($values[29]) + intval($values[30]));
+				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
+				
+				$values[24] = "2X18M";
+				$values[41] = strval(intval($values[41])+1);
+				$values[13] = strval(intval($values[31]) + intval($values[32]));
+				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
+			} else {
+				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
+			}
+			
+			$cpt_ligne ++;
         }
         fclose($file);
 

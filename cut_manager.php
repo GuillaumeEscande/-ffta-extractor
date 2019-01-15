@@ -28,7 +28,7 @@ class Cut_manager
         $this->_bdd = new BDD( $this->_configuration );
         $this->_cut = new Cut( $this->_configuration, $this->_bdd );
         $this->_export = new Export( $this->_configuration, $this->_bdd );
-        $this->_printer = new Printer( $this->_configuration, $this->_bdd, $this->_export, $this->_logger );
+        $this->_printer = new Printer( $this->_configuration, $this->_bdd, $this->_export, $this->_logger, $this->_request );
         
     }
 

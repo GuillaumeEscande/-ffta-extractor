@@ -3,19 +3,19 @@
         "login": "463693",
         "password": "aEY2UTYzajJhRCE=",
 
-        "saison" : "2018",
-        "date_debut": "01/08/2017",
-        "date_fin": "31/09/2018",
+        "saison" : "2019",
+        "date_debut": "01/08/2018",
+        "date_fin": "31/09/2019",
         "type_structure": "LIG",
         "code_structure": "CR11"
     },
     "bdd": {
-        "url": "sqlite:$LIB_HOME/data/base-cr11-2018.sqlite",
+        "url": "sqlite:$LIB_HOME/data/base-cr11-2018-salle.sqlite",
         "login": "",
         "password": ""
     },
     "log":{
-        "url": "sqlite:$LIB_HOME/data/base-cr11-2018.log.sqlite",
+        "url": "sqlite:$LIB_HOME/data/base-cr11-2018-salle.log.sqlite",
         "login": "",
         "password": "",
         "level":"DEBUG"
@@ -24,7 +24,7 @@
         {
             "name":"CL Poussin Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["P" ],
             "arme" : "CL",
@@ -34,7 +34,7 @@
         {
             "name":"CL Poussin Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["P" ],
             "arme" : "CL",
@@ -44,7 +44,7 @@
         {
             "name":"CL Benjamin Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["B" ],
             "arme" : "CL",
@@ -54,7 +54,7 @@
         {
             "name":"CL Benjamin Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["B" ],
             "arme" : "CL",
@@ -64,7 +64,7 @@
         {
             "name":"CL Minime Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["M" ],
             "arme" : "CL",
@@ -74,7 +74,7 @@
         {
             "name":"CL Minime Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["M" ],
             "arme" : "CL",
@@ -84,7 +84,7 @@
         {
             "name":"CL Cadet Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["C" ],
             "arme" : "CL",
@@ -94,7 +94,7 @@
         {
             "name":"CL Cadet Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["C" ],
             "arme" : "CL",
@@ -104,7 +104,7 @@
         {
             "name":"CL Junior Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["J" ],
             "arme" : "CL",
@@ -114,7 +114,7 @@
         {
             "name":"CL Junior Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["J" ],
             "arme" : "CL",
@@ -124,7 +124,7 @@
         {
             "name":"CO Cadet Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["C" ],
             "arme" : "CO",
@@ -134,7 +134,7 @@
         {
             "name":"CO Cadet Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["C" ],
             "arme" : "CO",
@@ -144,7 +144,7 @@
         {
             "name":"CO Junior Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["J" ],
             "arme" : "CO",
@@ -154,7 +154,7 @@
         {
             "name":"CO Junior Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["J" ],
             "arme" : "CO",
@@ -164,139 +164,139 @@
         {
             "name":"BB Jeune Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["P", "B", "C", "M", "J" ],
             "arme" : "BB",
             "nb_score" : "3",
-            "taille" : "6"
+            "taille" : "4"
         },
         {
             "name":"BB Jeune Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["P", "B", "C", "M", "J" ],
             "arme" : "BB",
             "nb_score" : "3",
-            "taille" : "2"
+            "taille" : "4"
         },
         {
-            "name":"CL Senior Femme",
+            "name":"CL Senior 1 Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
-            "categorie" : ["S"],
+            "categorie" : ["S1"],
             "arme" : "CL",
             "nb_score" : "3",
             "taille" : "32"
         },
         {
-            "name":"CL Senior Homme",
+            "name":"CL Senior 1 Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
-            "categorie" : ["S"],
+            "categorie" : ["S1"],
             "arme" : "CL",
             "nb_score" : "3",
             "taille" : "40"
         },
         {
-            "name":"CL Veteran Femme",
+            "name":"CL Senior 2 Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
-            "categorie" : ["V"],
+            "categorie" : ["S2"],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "24"
+        },
+        {
+            "name":"CL Senior 2 Homme",
+            "discipline" : "S",
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
+            "sexe" : "H",
+            "categorie" : ["S2"],
+            "arme" : "CL",
+            "nb_score" : "3",
+            "taille" : "40"
+        },
+        {
+            "name":"CL Senior 3 Femme",
+            "discipline" : "S",
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
+            "sexe" : "F",
+            "categorie" : ["S3"],
             "arme" : "CL",
             "nb_score" : "3",
             "taille" : "18"
         },
         {
-            "name":"CL Veteran Homme",
+            "name":"CL Senior 3 Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
-            "categorie" : ["V"],
+            "categorie" : ["S3"],
             "arme" : "CL",
             "nb_score" : "3",
-            "taille" : "34"
+            "taille" : "22"
         },
         {
-            "name":"CL Super-Veteran Femme",
+            "name":"CO Senior 1 Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
-            "categorie" : ["SV"],
-            "arme" : "CL",
-            "nb_score" : "3",
-            "taille" : "18"
-        },
-        {
-            "name":"CL Super-Veteran Homme",
-            "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
-            "sexe" : "H",
-            "categorie" : ["SV"],
-            "arme" : "CL",
-            "nb_score" : "3",
-            "taille" : "34"
-        },
-        {
-            "name":"CO Senior Femme",
-            "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
-            "sexe" : "F",
-            "categorie" : ["S"],
+            "categorie" : ["S1"],
             "arme" : "CO",
             "nb_score" : "3",
             "taille" : "10"
         },
         {
-            "name":"CO Senior Homme",
+            "name":"CO Senior 1 Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
-            "categorie" : ["S"],
-            "arme" : "CO",
-            "nb_score" : "3",
-            "taille" : "32"
-        },
-        {
-            "name":"CO Veteran Femme",
-            "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
-            "sexe" : "F",
-            "categorie" : ["V"],
-            "arme" : "CO",
-            "nb_score" : "3",
-            "taille" : "4"
-        },
-        {
-            "name":"CO Veteran Homme",
-            "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
-            "sexe" : "H",
-            "categorie" : ["V"],
+            "categorie" : ["S1"],
             "arme" : "CO",
             "nb_score" : "3",
             "taille" : "16"
         },
         {
-            "name":"CO Super-Veteran Femme",
+            "name":"CO Senior 2 Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
-            "categorie" : ["SV"],
+            "categorie" : ["S2"],
             "arme" : "CO",
             "nb_score" : "3",
             "taille" : "4"
         },
         {
-            "name":"CO Super-Veteran Homme",
+            "name":"CO Senior 2 Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
-            "categorie" : ["SV"],
+            "categorie" : ["S2"],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "16"
+        },
+        {
+            "name":"CO Senior 3 Femme",
+            "discipline" : "S",
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
+            "sexe" : "F",
+            "categorie" : ["S3"],
+            "arme" : "CO",
+            "nb_score" : "3",
+            "taille" : "4"
+        },
+        {
+            "name":"CO Senior 3 Homme",
+            "discipline" : "S",
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
+            "sexe" : "H",
+            "categorie" : ["S3"],
             "arme" : "CO",
             "nb_score" : "3",
             "taille" : "16"
@@ -304,7 +304,7 @@
         {
             "name":"BB Adulte Femme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
             "categorie" : ["SV", "V", "S" ],
             "arme" : "BB",
@@ -314,7 +314,7 @@
         {
             "name":"BB Adulte Homme",
             "discipline" : "S",
-            "formule" : ["2X18M", "2X(2X18M)"],
+            "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
             "categorie" : ["SV", "V", "S" ],
             "arme" : "BB",

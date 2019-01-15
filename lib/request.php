@@ -84,6 +84,42 @@ class RequestExtranet extends Request
 
         return $file_url;
     }
+	
+	public function get_email($licence){
+		
+		$data = array(
+            "FindAdherent" => $licence
+        );
+
+        $reponse = $this->curl("https://extranet.ffta.fr/federation/licences.html", $data);
+		
+        $regexp = "/federation\/licences\/edit-.*?\/informations.html/m";
+        preg_match_all($regexp, $reponse, $m, PREG_PATTERN_ORDER  );
+        $licence = $m[0][1]; 
+		
+        $reponse = $this->curl("https://extranet.ffta.fr/".$licence, array( ));
+				
+        $regexp = "/mailto:(.*?)\"/m";
+        preg_match_all($regexp, $reponse, $m, PREG_PATTERN_ORDER);
+        $email = $m[1][0]; 
+				
+        return $email;
+		//return 'escande.guillaume@gmail.com';
+	}
+	
+	public function check_date_naissance($licence, $date){
+		
+		$data = array(
+            "FindAdherent" => $licence
+        );
+
+        $reponse = $this->curl("https://extranet.ffta.fr/federation/licences.html", $data);
+		
+		if (strpos($reponse, $date) !== false) {
+			return True;
+		}
+		return False;
+	}
 }   
 
 
