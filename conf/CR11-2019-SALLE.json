@@ -269,7 +269,7 @@
             "categorie" : ["S2"],
             "arme" : "CO",
             "nb_score" : "3",
-            "taille" : "4"
+            "taille" : "12"
         },
         {
             "name":"CO Senior 2 Homme",
@@ -306,7 +306,7 @@
             "discipline" : "S",
             "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "F",
-            "categorie" : ["SV", "V", "S" ],
+            "categorie" : ["S1", "S2", "S3" ],
             "arme" : "BB",
             "nb_score" : "3",
             "taille" : "10"
@@ -316,7 +316,7 @@
             "discipline" : "S",
             "formule" : ["2X18M", "2X(2X18M)", "2X25M"],
             "sexe" : "H",
-            "categorie" : ["SV", "V", "S" ],
+            "categorie" : ["S1", "S2", "S3" ],
             "arme" : "BB",
             "nb_score" : "3",
             "taille" : "20"

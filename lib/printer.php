@@ -166,7 +166,7 @@ class Printer
                 
             if( $row['ETAT'] == 1)
                 $classe_status = "cutPreInscrit";
-            elseif( $row['ETAT'] == 2)
+            elseif( $row['ETAT'] == 2 || $row['ETAT'] == 4)
                 $classe_status = "cutInscrit";
             elseif( $row['ETAT'] == 3 )
                 $classe_status = "cutRefu";
@@ -287,6 +287,11 @@ class Printer
                 echo "<option value=3 ";
                 if( $row['ETAT'] == 3 ) echo "selected='selected' ";
                 echo ">Refus</option>";
+
+                echo "<option value=4 ";
+                if( $row['ETAT'] == 4 ) echo "selected='selected' ";
+                echo ">Séléction définitive</option>";
+
 
                 echo "</select>";
                 echo "<input type='hidden' name='id' value='".$row['NO_LICENCE']."' >";
@@ -451,6 +456,18 @@ class Printer
 				$message .= "\n";
 				$message .= "Etat : ".Printer::etat_to_string($mode)."\n";
 				$message .= "\n";
+                                $message .= "\n";
+                                if ($mode == 4) {
+					$message .= "Vous avez été selectionné pour le Championnat Régionnal Salle du CRTAO\n";
+                                        $message .= "\n";
+                                        $message .= "Les mandats sont disponibles ici :\n";
+                                        $message .= "CR Jeune : <TODO PDF Mandat Saint-Gille>\n";
+                                        $message .= "CR Adulte :  <TODO PDF Mandat Auch>\n";
+                                        $message .= "\n";
+                                        $message .= "Félicitation !\n";
+                                }
+                                $message .= "\n";
+                                $message .= "\n";
 				$message .= "Bien Cordialement\n";
 				$message .= "La gestion sportive du CRTAO\n";
 				$message .= "\n";
@@ -475,6 +492,8 @@ class Printer
                 return "INSCRIT";
             case 3:
                 return "REFU";
+            case 4:
+                return "SELECTION_DEFINITIVE";
         }
     }
 
