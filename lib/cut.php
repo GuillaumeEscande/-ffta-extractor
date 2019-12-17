@@ -14,21 +14,22 @@ class CUT
         $this->_bdd = $bdd;
     }
 
-    public function ingestScoreInBDD( $stmt, $values, $cpt_entree, $cpt_ligne ){
-		$cpt = 1;
-		foreach( $values as $val ){ 
-			$stmt->bindValue($cpt, $val);
-			$cpt++;
-		}
-	
-		try{
-			$result = $stmt->execute();
-			$cpt_entree ++;
-		}catch (\PDOException $e){
-			echo "|  |  |  Erreur d'insetion de la ligne : $cpt_ligne";
-			echo " : ".$e->getMessage( )."<br/>\n";
-		}
-	}
+    public function ingestScoreInBDD( $stmt, $values, &$cpt_entree, $cpt_ligne ){
+  		$cpt = 1;
+  		foreach( $values as $val ){ 
+  			$stmt->bindValue($cpt, $val);
+  			$cpt++;
+  		}
+  	
+  		try{
+  			$result = $stmt->execute();
+        if(DEBUG) echo "|  |  |  result = $result<br/>\n";
+  			$cpt_entree ++;
+  		}catch (\PDOException $e){
+  			echo "|  |  |  Erreur d'insetion de la ligne : $cpt_ligne";
+  			echo " : ".$e->getMessage( )."<br/>\n";
+  		}
+  	}
 	
     public function fill_all_results( $csvUrl ){
         
@@ -60,27 +61,36 @@ class CUT
             
 			
             $values = explode(";", $corrected_line);
-			// Cas particulier du 2X25M + 2X18M
-			if( $values[24] == "2X25M + 2X18M" ){
-				$values[24] = "2X25M";
-				$values[13] = strval(intval($values[29]) + intval($values[30]));
-				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
-				
-				$values[24] = "2X18M";
-				$values[41] = strval(intval($values[41])+1);
-				$values[13] = strval(intval($values[31]) + intval($values[32]));
-				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
-			} else {
-				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
-			}
-			
-			$cpt_ligne ++;
+
+
+      			// Cas particulier du 2X25M + 2X18M
+      			if( $values[24] == "2X25M + 2X18M" && $values[31] != "0" ){
+      				$values[24] = "2X25M";
+      				$values[13] = strval(intval($values[29]) + intval($values[30]));
+      				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
+      				
+      				$values[24] = "2X18M";
+      				$values[41] = strval(intval($values[41])+1);
+      				$values[13] = strval(intval($values[31]) + intval($values[32]));
+      				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
+      			} else if( $values[24] == "2X25M + 2X18M" ){
+      				if ( intval($values[41]) % 2 == 1 ) {
+      				  $values[24] = "2X25M";
+              } else {
+      				  $values[24] = "2X18M";
+              }
+      				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
+      			} else {
+      				$this->ingestScoreInBDD($stmt, $values, $cpt_entree, $cpt_ligne);
+      			}
+
+      			$cpt_ligne ++;
         }
         fclose($file);
 
 
         echo "|  |  Fin de parsing du fichier - \n";
-        echo "OK : ".  strval(count($cpt_ligne))." lignes - ".  strval(count($cpt_entree))." entrée </br>\n";
+        echo "OK : ".  strval($cpt_ligne)." lignes - ".  strval($cpt_entree)." entrée </br>\n";
     }
 
     // fonction de comparaison utilisé pour les égalité
@@ -132,7 +142,7 @@ class CUT
         //----------------------------
         // STEP 1 : Création sous selection
         //----------------------------
-        $querySubSelect = "NUM_DEPART='1' ";
+        #$querySubSelect = "NUM_DEPART='1' ";
         $querySubSelect = "'1' ";
         
         // Discipline
@@ -164,6 +174,8 @@ class CUT
         $query = "SELECT NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE , NOM_STRUCTURE
         FROM RESULTS  
         WHERE  ".$querySubSelect." GROUP BY NO_LICENCE";
+        
+        if(DEBUG) echo "|  |  |  DEBUG : requete archers query </br>\n";
 
         $sth_archer = $pdo->prepare($query);
         $sth_archer->execute();

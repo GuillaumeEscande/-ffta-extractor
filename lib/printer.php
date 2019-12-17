@@ -446,7 +446,7 @@ class Printer
 				
 				$message = "Bonjour,\n";
 				$message .= "\n";
-				$message .= "Nous vons informons que le gestionnaire sportif du CRTAO à changé l'état de votre inscription :\n";
+				$message .= "Nous vous informons que le gestionnaire sportif du CRTAO à changé l'état de votre inscription :\n";
 				$message .= "\n";
 				$message .= "Nom : ".$row['NOM_PERSONNE']."\n";
 				$message .= "Prénom : ".$row['PRENOM_PERSONNE']."\n";
@@ -458,11 +458,11 @@ class Printer
 				$message .= "\n";
                                 $message .= "\n";
                                 if ($mode == 4) {
-					$message .= "Vous avez été selectionné pour le Championnat Régionnal Salle du CRTAO\n";
+					$message .= "Vous avez été sélectionné pour le Championnat Régional Salle du CRTAO\n";
                                         $message .= "\n";
                                         $message .= "Les mandats sont disponibles ici :\n";
-                                        $message .= "CR Jeune : <TODO PDF Mandat Saint-Gille>\n";
-                                        $message .= "CR Adulte :  <TODO PDF Mandat Auch>\n";
+                                        $message .= "CR Jeune : http://extranet.ffta.fr/medias/documents_epreuves/ec2a7a18399a4.pdf \n";
+                                        $message .= "CR Adulte : http://extranet.ffta.fr/medias/documents_epreuves/ec23e9310c140.pdf \n";
                                         $message .= "\n";
                                         $message .= "Félicitation !\n";
                                 }
@@ -472,7 +472,7 @@ class Printer
 				$message .= "La gestion sportive du CRTAO\n";
 				$message .= "\n";
 							
-				Printer::send_mail ( $email , "[CRTAO] Inscription Championnat Regional CRTAO" ,  $message );	
+				Printer::send_mail ( $email , "[CRTAO] Inscription Championnat Régional CRTAO" ,  $message );	
 				
 				echo "<br/><br/>Un mail à été envoyé à $email pour le notifier du changement d'état de son inscription<br/><br/>\n";
 				

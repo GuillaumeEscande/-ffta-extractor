@@ -117,7 +117,7 @@ class BDD
     
     }
 
-    public function generate_table_cut(){
+/*    public function generate_table_cut(){
         $query = "INSERT INTO CUTS
         SELECT NO_LICENCE, NOM_PERSONNE, PRENOM_PERSONNE, SEXE_PERSONNE, CAT, ARME, NIVEAU, SCORE FROM RESULTS A
             WHERE SCORE IN 
@@ -133,7 +133,7 @@ class BDD
 
         $results = $base->query($query) or die('Error to generate CUT');
     }
-
+*/
     public function create_and_cond_array($paramValue, $columnName){
         $array_data = array();
         if ( is_array( $paramValue) )
